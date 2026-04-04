@@ -1,0 +1,2912 @@
+{
+	"id": "CFG-WFC01_IM_DEFAULT",
+	"manuals-url": "https://qrc02.immergas.com/3.026273-3.034903",
+	"manuals-url-bak": "https://pwa02.immergas.com/#/lookup",
+	"screens": {
+		"home-landing": {
+			"auto-connect": true,
+			"reset-on-disconnect": false,
+			"reset-on-blur": 30000,
+			"items": {
+				"timer-set": {
+					"value": [
+						"disabled",
+						"off"
+					],
+					"min": 0,
+					"max": 255,
+					"step": 1,
+					"format": "time",
+					"M": 1800
+				},
+				"activation": {
+					"value": [
+						"enabled",
+						"off"
+					]
+				},
+				"outdoor-temperature": {
+					"decimal": 1,
+					"suffix": " °C",
+					"value": [
+						"disabled",
+						"off",
+						"blinkoff"
+					]
+				},
+				"heating-status": {
+					"value": [
+						"disabled",
+						"off",
+						"blinkoff"
+					]
+				},
+				"chiller-status": {
+					"value": [
+						"disabled",
+						"off",
+						"blinkoff"
+					]
+				},
+				"water-status": {
+					"value": [
+						"disabled",
+						"off",
+						"blinkoff"
+					]
+				},
+				"boost-status": {
+					"value": [
+						"disabled"
+					]
+				},
+				"flame-level": {
+					"value": [
+						"disabled",
+						"off",
+						"blinkoff"
+					],
+					"suffix": " %"
+				},
+				"room-temperature": {
+					"decimal": 1,
+					"suffix": " °C",
+					"value": [
+						"disabled",
+						"off",
+						"blinkoff"
+					]
+				},
+				"room-temperature-set": {
+					"min": 10,
+					"max": 35,
+					"decimal": 1,
+					"suffix": " °C",
+					"value": [
+						"disabled",
+						"off",
+						"blinkoff"
+					]
+				},
+				"heating-temperature": {
+					"value": [
+						"disabled",
+						"off"
+					],
+					"suffix": " °C"
+				},
+				"heating-temperature-set": {
+					"value": [
+						"disabled",
+						"off"
+					],
+					"min": 10,
+					"max": 85,
+					"suffix": " °C"
+				},
+				"boiler-status": {
+					"value": [
+						"enabled",
+						"blinkoff"
+					]
+				},
+				"error-code": {
+					"value": [
+						"enabled",
+						"blinkoff"
+					]
+				},
+				"reset": {
+					"value": [
+						"disabled"
+					]
+				},
+				"functional-log": {
+					"value": [
+						"disabled"
+					]
+				}
+			},
+			"messages-delay": 300,
+			"messages-timeout": 3000,
+			"messages": [
+				{
+					"id": 0,
+					"action": "read"
+				},
+				{
+					"id": 24,
+					"action": "read"
+				},
+				{
+					"id": 16,
+					"action": "read"
+				},
+				{
+					"id": 0,
+					"action": "read"
+				},
+				{
+					"id": 89,
+					"action": "read",
+					"data": [
+						[
+							"HB",
+							"u8",
+							"0"
+						],
+						[
+							"LB",
+							"u8",
+							"0"
+						]
+					]
+				},
+				{
+					"id": 89,
+					"action": "read",
+					"data": [
+						[
+							"HB",
+							"u8",
+							"1"
+						],
+						[
+							"LB",
+							"u8",
+							"0"
+						]
+					]
+				},
+				{
+					"id": 17,
+					"action": "read"
+				},
+				{
+					"id": 27,
+					"action": "read"
+				},
+				{
+					"id": 25,
+					"action": "read"
+				},
+				{
+					"id": 5,
+					"action": "read"
+				}
+			],
+			"view-map-update": [
+				{
+					"id": 0,
+					"action": "read",
+					"view": [
+						{
+							"item": "flame-level",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"3"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"on",
+								"enabled"
+							],
+							"else-value": [
+								"off",
+								"disabled"
+							]
+						},
+						{
+							"item": "boiler-status",
+							"check": {
+								"data": [
+									"HB",
+									"flag8",
+									"210"
+								],
+								"match": [
+									"000",
+									"010",
+									"011",
+									"110"
+								],
+								"match-return": [
+									0,
+									1,
+									2,
+									3
+								]
+							},
+							"value": [
+								"blinkoff"
+							]
+						},
+						{
+							"item": "heating-status",
+							"check": {
+								"data": [
+									"HB",
+									"flag8",
+									"0"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"enabled"
+							],
+							"else-value": [
+								"disabled"
+							]
+						},
+						{
+							"item": "heating-status",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"1"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"on"
+							],
+							"else-value": [
+								"off"
+							]
+						},
+						{
+							"item": "chiller-status",
+							"check": {
+								"data": [
+									"HB",
+									"flag8",
+									"2"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"enabled"
+							],
+							"else-value": [
+								"disabled"
+							]
+						},
+						{
+							"item": "chiller-status",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"4"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"on"
+							],
+							"else-value": [
+								"off"
+							]
+						},
+						{
+							"item": "water-status",
+							"check": {
+								"data": [
+									"HB",
+									"flag8",
+									"1"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"enabled"
+							],
+							"else-value": [
+								"disabled"
+							]
+						},
+						{
+							"item": "booster-status",
+							"check": {
+								"data": [
+									"HB",
+									"flag8",
+									"1"
+								],
+								"match": [
+									"0"
+								]
+							},
+							"else-value": [
+								"disabled"
+							]
+						},
+						{
+							"item": "water-status",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"2"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"on"
+							],
+							"else-value": [
+								"off"
+							]
+						},
+						{
+							"item": "functional-log",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"0"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"enabled",
+								"on",
+								"blinkoff"
+							],
+							"else-value": [
+								"disabled"
+							]
+						},
+						{
+							"item": "error-code",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"0"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"on"
+							],
+							"else-value": [
+								"off"
+							]
+						}
+					]
+				},
+				{
+					"id": 0,
+					"action": "write",
+					"view": [
+						{
+							"item": "boiler-status",
+							"check": {
+								"data": [
+									"HB",
+									"flag8",
+									"210"
+								],
+								"match": [
+									"000",
+									"010",
+									"011",
+									"110"
+								],
+								"match-return": [
+									0,
+									1,
+									2,
+									3
+								]
+							},
+							"value": [
+								"blinkon"
+							]
+						}
+					]
+				},
+				{
+					"id": 5,
+					"action": "read",
+					"view": [
+						{
+							"item": "error-code",
+							"check": {
+								"data": [
+									"LB",
+									"u8"
+								],
+								"match": 0
+							},
+							"return": "OK",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"else-return": [
+								"LB",
+								"u8"
+							],
+							"else-value": [
+								"on",
+								"blinkon"
+							]
+						},
+						{
+							"item": "error-code",
+							"check": {
+								"data": [
+									"HB",
+									"flag8",
+									"1"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"blinkon"
+							],
+							"else-value": [
+								"blinkoff"
+							]
+						},
+						{
+							"item": "reset",
+							"check": {
+								"data": [
+									"HB",
+									"flag8",
+									"1"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"enabled",
+								"blinkon"
+							],
+							"else-value": [
+								"disabled",
+								"blinkoff"
+							]
+						},
+						{
+							"item": "functional-log",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"id": 17,
+					"action": "read",
+					"view": [
+						{
+							"item": "flame-level",
+							"check": {
+								"data": [
+									"HB",
+									"u8"
+								],
+								"match": [
+									0
+								]
+							},
+							"return": [
+								"HB",
+								"u8"
+							],
+							"else-return": [
+								"HB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"id": 16,
+					"action": "read",
+					"view": [
+						{
+							"item": "room-temperature-set",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"f8.8"
+							]
+						}
+					]
+				},
+				{
+					"id": 16,
+					"action": "write",
+					"view": [
+						{
+							"item": "room-temperature-set",
+							"value": [
+								"blinkon"
+							],
+							"return": [
+								"f8.8"
+							]
+						}
+					]
+				},
+				{
+					"id": 24,
+					"action": "read",
+					"view": [
+						{
+							"item": "room-temperature",
+							"value": [
+								"enabled"
+							],
+							"return": [
+								"f8.8"
+							]
+						},
+						{
+							"item": "room-temperature-set",
+							"value": [
+								"enabled"
+							]
+						}
+					]
+				},
+				{
+					"id": 24,
+					"action": "invalid",
+					"view": [
+						{
+							"item": "room-temperature",
+							"value": [
+								"enabled"
+							],
+							"return": "---"
+						},
+						{
+							"item": "room-temperature-set",
+							"value": [
+								"disabled"
+							]
+						}
+					]
+				},
+				{
+					"id": 27,
+					"action": "read",
+					"view": [
+						{
+							"item": "outdoor-temperature",
+							"check": {
+								"data": [
+									"HB",
+									"u8"
+								],
+								"match": [
+									127
+								]
+							},
+							"value": [
+								"disabled"
+							],
+							"else-value": [
+								"enabled"
+							],
+							"else-return": [
+								"f8.8"
+							]
+						}
+					]
+				},
+				{
+					"id": 89,
+					"HB": 0,
+					"action": "read",
+					"view": [
+						{
+							"item": "activation",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"0"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"return": 1,
+							"value": [
+								"on"
+							],
+							"else-value": [
+								"off"
+							],
+							"else-return": 0
+						}
+					]
+				},
+				{
+					"id": 89,
+					"HB": 0,
+					"action": "write",
+					"view": [
+						{
+							"item": "activation",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"0"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"return": 1,
+							"value": [
+								"on"
+							],
+							"else-value": [
+								"off"
+							],
+							"else-return": 0
+						}
+					]
+				},
+				{
+					"id": 89,
+					"HB": 1,
+					"action": "read",
+					"view": [
+						{
+							"item": "timer-set",
+							"check": {
+								"data": [
+									"LB",
+									"u8"
+								],
+								"match": [
+									0
+								]
+							},
+							"value": [
+								"disabled",
+								"blinkoff"
+							],
+							"return": [
+								"---"
+							],
+							"else-value": [
+								"enabled",
+								"blinkon"
+							],
+							"else-return": [
+								"LB",
+								"u8"
+							]
+						},
+						{
+							"item": "activation",
+							"check": {
+								"data": [
+									"LB",
+									"u8"
+								],
+								"match": [
+									0
+								]
+							},
+							"value": [
+								"blinkoff"
+							],
+							"else-value": [
+								"blinkon"
+							]
+						}
+					]
+				},
+				{
+					"id": 89,
+					"HB": 1,
+					"action": "write",
+					"view": [
+						{
+							"item": "timer-set",
+							"check": {
+								"data": [
+									"LB",
+									"u8"
+								],
+								"match": [
+									0
+								]
+							},
+							"value": [
+								"disabled"
+							],
+							"return": [
+								"LB",
+								"u8"
+							],
+							"else-value": [
+								"enabled",
+								"blinkon"
+							],
+							"else-return": [
+								"LB",
+								"u8"
+							]
+						},
+						{
+							"item": "activation",
+							"check": {
+								"data": [
+									"LB",
+									"u8"
+								],
+								"match": [
+									0
+								]
+							},
+							"value": [
+								"blinkoff"
+							],
+							"else-value": [
+								"blinkon"
+							]
+						}
+					]
+				},
+				{
+					"id": 4,
+					"action": "write",
+					"view": [
+						{
+							"item": "reset",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"7"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"else-value": [
+								"on",
+								"blinkon"
+							]
+						}
+					]
+				}
+			],
+			"commands": [
+				{
+					"item": "boiler-status",
+					"id": 0,
+					"action": "write",
+					"data": [
+						[
+							"HB",
+							"flag8",
+							"210",
+							{
+								"value": "boiler-status",
+								"match": [
+									0,
+									1,
+									2,
+									3
+								],
+								"match-load": [
+									"000",
+									"010",
+									"011",
+									"110"
+								]
+							}
+						]
+					]
+				},
+				{
+					"item": "room-temperature-set",
+					"id": 16,
+					"action": "write",
+					"data": [
+						[
+							"f8.8",
+							"room-temperature-set"
+						]
+					]
+				},
+				{
+					"item": "activation",
+					"id": 89,
+					"action": "write",
+					"data": [
+						[
+							"HB",
+							"u8",
+							0
+						],
+						[
+							"LB",
+							"flag8",
+							"0",
+							{
+								"value": "activation",
+								"match": [
+									0,
+									1
+								],
+								"match-load": [
+									"1",
+									"0"
+								]
+							}
+						]
+					]
+				},
+				{
+					"item": "timer-set",
+					"id": 89,
+					"action": "write",
+					"data": [
+						[
+							"HB",
+							"u8",
+							1
+						],
+						[
+							"LB",
+							"u8",
+							"timer-set"
+						]
+					]
+				},
+				{
+					"item": "reset",
+					"id": 4,
+					"action": "write",
+					"data": [
+						[
+							"HB",
+							"u8",
+							1
+						],
+						[
+							"LB",
+							"u8",
+							127
+						]
+					]
+				}
+			]
+		},
+		"boiler-landing": {
+			"auto-connect": true,
+			"reset-on-disconnect": false,
+			"reset-on-blur": 30000,
+			"items": {
+				"timer-set": {
+					"value": [
+						"disabled",
+						"off"
+					],
+					"min": 0,
+					"max": 255,
+					"step": 1,
+					"format": "time",
+					"M": 1800
+				},
+				"activation": {
+					"value": [
+						"enabled",
+						"off"
+					]
+				},
+				"boiler-status": {
+					"value": [
+						"enabled"
+					]
+				},
+				"flame-level": {
+					"value": [
+						"disabled"
+					],
+					"suffix": " %"
+				},
+				"heating-temperature": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"suffix": " °C"
+				},
+				"heating-temperature-set": {
+					"value": [
+						"disabled",
+						"off"
+					],
+					"min": 10,
+					"max": 85,
+					"suffix": " °C"
+				},
+				"water-temperature": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"suffix": " °C"
+				},
+				"water-temperature-set": {
+					"value": [
+						"disabled",
+						"off"
+					],
+					"min": 30,
+					"max": 60,
+					"suffix": " °C"
+				},
+				"boost-status": {
+					"value": [
+						"disabled"
+					]
+				},
+				"error-code": {
+					"value": [
+						"disabled",
+						"blinkoff"
+					]
+				},
+				"functional-log": {
+					"value": [
+						"disabled"
+					]
+				},
+				"fault-tree": {
+					"value": [
+						"enabled"
+					]
+				},
+				"system-info": {
+					"value": [
+						"enabled"
+					]
+				},
+				"reset": {
+					"value": [
+						"disabled"
+					]
+				}
+			},
+			"messages-delay": 300,
+			"messages-timeout": 3000,
+			"messages": [
+				{
+					"id": 0,
+					"action": "read"
+				},
+				{
+					"id": 89,
+					"action": "read",
+					"data": [
+						[
+							"HB",
+							"u8",
+							"0"
+						],
+						[
+							"LB",
+							"u8",
+							"0"
+						]
+					]
+				},
+				{
+					"id": 89,
+					"action": "read",
+					"data": [
+						[
+							"HB",
+							"u8",
+							"1"
+						],
+						[
+							"LB",
+							"u8",
+							"0"
+						]
+					]
+				},
+				{
+					"id": 89,
+					"action": "read",
+					"data": [
+						[
+							"HB",
+							"u8",
+							"17"
+						],
+						[
+							"LB",
+							"u8",
+							"0"
+						]
+					]
+				},
+				{
+					"id": 17,
+					"action": "read"
+				},
+				{
+					"id": 5,
+					"action": "read"
+				},
+				{
+					"id": 25,
+					"action": "read"
+				},
+				{
+					"id": 26,
+					"action": "read"
+				},
+				{
+					"id": 56,
+					"action": "read"
+				}
+			],
+			"view-map-update": [
+				{
+					"id": 0,
+					"action": "read",
+					"view": [
+						{
+							"item": "flame-level",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"3"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"on",
+								"enabled"
+							],
+							"else-value": [
+								"off",
+								"disabled"
+							]
+						},
+						{
+							"item": "boiler-status",
+							"check": {
+								"data": [
+									"HB",
+									"flag8",
+									"210"
+								],
+								"match": [
+									"000",
+									"010",
+									"011",
+									"110"
+								],
+								"match-return": [
+									0,
+									1,
+									2,
+									3
+								]
+							},
+							"value": [
+								"blinkoff"
+							]
+						},
+						{
+							"item": "heating-temperature-set",
+							"check": {
+								"data": [
+									"HB",
+									"flag8",
+									"0"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"enabled"
+							],
+							"else-value": [
+								"disabled"
+							]
+						},
+						{
+							"item": "water-temperature-set",
+							"check": {
+								"data": [
+									"HB",
+									"flag8",
+									"1"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"enabled"
+							],
+							"else-value": [
+								"disabled"
+							]
+						},
+						{
+							"item": "heating-temperature",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"1"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"on",
+								"blinkoff"
+							],
+							"else-value": [
+								"off",
+								"blinkoff"
+							]
+						},
+						{
+							"item": "water-temperature",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"2"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"on",
+								"blinkoff"
+							],
+							"else-value": [
+								"off",
+								"blinkoff"
+							]
+						},
+						{
+							"item": "functional-log",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"0"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"enabled",
+								"on",
+								"blinkoff"
+							],
+							"else-value": [
+								"disabled"
+							]
+						},
+						{
+							"item": "error-code",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"0"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"enabled",
+								"on"
+							],
+							"else-value": [
+								"disabled",
+								"off"
+							]
+						}
+					]
+				},
+				{
+					"id": 0,
+					"action": "write",
+					"view": [
+						{
+							"item": "boiler-status",
+							"check": {
+								"data": [
+									"HB",
+									"flag8",
+									"210"
+								],
+								"match": [
+									"000",
+									"010",
+									"011",
+									"110"
+								],
+								"match-return": [
+									0,
+									1,
+									2,
+									3
+								]
+							},
+							"value": [
+								"blinkon"
+							]
+						}
+					]
+				},
+				{
+					"id": 5,
+					"action": "read",
+					"view": [
+						{
+							"item": "error-code",
+							"check": {
+								"data": [
+									"LB",
+									"u8"
+								],
+								"match": 0
+							},
+							"return": "OK",
+							"value": [
+								"disabled",
+								"off",
+								"blinkoff"
+							],
+							"else-return": [
+								"LB",
+								"u8"
+							],
+							"else-value": [
+								"on",
+								"blinkon"
+							]
+						},
+						{
+							"item": "error-code",
+							"check": {
+								"data": [
+									"HB",
+									"flag8",
+									"1"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"blinkon"
+							],
+							"else-value": [
+								"blinkoff"
+							]
+						},
+						{
+							"item": "reset",
+							"check": {
+								"data": [
+									"HB",
+									"flag8",
+									"1"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"enabled",
+								"blinkon"
+							],
+							"else-value": [
+								"disabled",
+								"blinkoff"
+							]
+						},
+						{
+							"item": "functional-log",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"id": 17,
+					"action": "read",
+					"view": [
+						{
+							"item": "flame-level",
+							"check": {
+								"data": [
+									"HB",
+									"u8"
+								],
+								"match": [
+									0
+								]
+							},
+							"return": [
+								"HB",
+								"u8"
+							],
+							"else-return": [
+								"HB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"id": 25,
+					"action": "read",
+					"view": [
+						{
+							"item": "heating-temperature",
+							"return": [
+								"f8.8"
+							]
+						}
+					]
+				},
+				{
+					"id": 26,
+					"action": "read",
+					"view": [
+						{
+							"item": "water-temperature",
+							"return": [
+								"f8.8"
+							]
+						}
+					]
+				},
+				{
+					"id": 89,
+					"HB": 17,
+					"action": "read",
+					"view": [
+						{
+							"item": "heating-temperature-set",
+							"value": [
+								"enable",
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"id": 56,
+					"action": "read",
+					"view": [
+						{
+							"item": "water-temperature-set",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"HB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"id": 56,
+					"action": "write",
+					"view": [
+						{
+							"item": "water-temperature-set",
+							"value": [
+								"blinkon"
+							],
+							"return": [
+								"HB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"id": 89,
+					"HB": 0,
+					"action": "read",
+					"view": [
+						{
+							"item": "activation",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"0"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"return": 1,
+							"value": [
+								"on"
+							],
+							"else-value": [
+								"off"
+							],
+							"else-return": 0
+						}
+					]
+				},
+				{
+					"id": 89,
+					"HB": 0,
+					"action": "write",
+					"view": [
+						{
+							"item": "activation",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"0"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"return": 1,
+							"value": [
+								"on"
+							],
+							"else-value": [
+								"off"
+							],
+							"else-return": 0
+						}
+					]
+				},
+				{
+					"id": 89,
+					"HB": 1,
+					"action": "read",
+					"view": [
+						{
+							"item": "timer-set",
+							"check": {
+								"data": [
+									"LB",
+									"u8"
+								],
+								"match": [
+									0
+								]
+							},
+							"value": [
+								"disabled",
+								"blinkoff"
+							],
+							"return": [
+								"---"
+							],
+							"else-value": [
+								"enabled",
+								"blinkon"
+							],
+							"else-return": [
+								"LB",
+								"u8"
+							]
+						},
+						{
+							"item": "activation",
+							"check": {
+								"data": [
+									"LB",
+									"u8"
+								],
+								"match": [
+									0
+								]
+							},
+							"value": [
+								"blinkoff"
+							],
+							"else-value": [
+								"blinkon"
+							]
+						}
+					]
+				},
+				{
+					"id": 89,
+					"HB": 1,
+					"action": "write",
+					"view": [
+						{
+							"item": "timer-set",
+							"check": {
+								"data": [
+									"LB",
+									"u8"
+								],
+								"match": [
+									0
+								]
+							},
+							"value": [
+								"disabled"
+							],
+							"return": [
+								"LB",
+								"u8"
+							],
+							"else-value": [
+								"enabled",
+								"blinkon"
+							],
+							"else-return": [
+								"LB",
+								"u8"
+							]
+						},
+						{
+							"item": "activation",
+							"check": {
+								"data": [
+									"LB",
+									"u8"
+								],
+								"match": [
+									0
+								]
+							},
+							"value": [
+								"blinkoff"
+							],
+							"else-value": [
+								"blinkon"
+							]
+						}
+					]
+				},
+				{
+					"id": 89,
+					"HB": 17,
+					"action": "write",
+					"view": [
+						{
+							"item": "heating-temperature-set",
+							"value": [
+								"enabled",
+								"blinkon"
+							],
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"id": 4,
+					"action": "write",
+					"view": [
+						{
+							"item": "reset",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"7"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"else-value": [
+								"on",
+								"blinkon"
+							]
+						}
+					]
+				}
+			],
+			"commands": [
+				{
+					"item": "heating-temperature-set",
+					"id": 89,
+					"action": "write",
+					"data": [
+						[
+							"HB",
+							"u8",
+							17
+						],
+						[
+							"LB",
+							"u8",
+							"heating-temperature-set"
+						]
+					]
+				},
+				{
+					"item": "water-temperature-set",
+					"id": 56,
+					"action": "write",
+					"data": [
+						[
+							"HB",
+							"u8",
+							"water-temperature-set"
+						],
+						[
+							"LB",
+							"u8",
+							0
+						]
+					]
+				},
+				{
+					"item": "reset",
+					"id": 4,
+					"action": "write",
+					"data": [
+						[
+							"HB",
+							"u8",
+							1
+						],
+						[
+							"LB",
+							"u8",
+							127
+						]
+					]
+				},
+				{
+					"item": "activation",
+					"id": 89,
+					"action": "write",
+					"data": [
+						[
+							"HB",
+							"u8",
+							0
+						],
+						[
+							"LB",
+							"flag8",
+							"0",
+							{
+								"value": "activation",
+								"match": [
+									0,
+									1
+								],
+								"match-load": [
+									"1",
+									"0"
+								]
+							}
+						]
+					]
+				},
+				{
+					"item": "timer-set",
+					"id": 89,
+					"action": "write",
+					"data": [
+						[
+							"HB",
+							"u8",
+							1
+						],
+						[
+							"LB",
+							"u8",
+							"timer-set"
+						]
+					]
+				}
+			]
+		},
+		"setup-wfc": {
+			"auto-connect": true,
+			"reset-on-disconnect": true,
+			"reset-on-blur": 30000,
+			"items": {
+				"title": {
+					"value": [
+						"enabled"
+					]
+				}
+			},
+			"messages-delay": 300,
+			"messages-timeout": 3000,
+			"alive-command-timeout": 5000,
+			"messages": [],
+			"view-map-update": [
+				{
+					"id": 88,
+					"action": "read",
+					"view": [
+						{
+							"item": "parameters-list",
+							"return": [
+								"HB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"id": 89,
+					"action": "read",
+					"view": [
+						{
+							"item": "parameter-read",
+							"return": [
+								[
+									"HB",
+									"u8"
+								],
+								[
+									"LB",
+									"u8"
+								]
+							]
+						}
+					]
+				},
+				{
+					"id": 89,
+					"action": "write",
+					"view": [
+						{
+							"item": "parameter-write",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				}
+			],
+			"commands": [
+				{
+					"item": "parameters-list",
+					"id": 88,
+					"action": "read",
+					"data": [
+						0,
+						0
+					]
+				},
+				{
+					"item": "parameter-read",
+					"id": 89,
+					"action": "read",
+					"data": [
+						[
+							"HB",
+							"u8",
+							"parameter-index"
+						]
+					]
+				},
+				{
+					"item": "parameter-write",
+					"id": 89,
+					"action": "write",
+					"data": [
+						[
+							"HB",
+							"u8",
+							"parameter-index"
+						],
+						[
+							"LB",
+							"u8",
+							"parameter-value"
+						]
+					]
+				},
+				{
+					"item": "alive",
+					"id": 0,
+					"action": "read"
+				}
+			]
+		},
+		"system-info": {
+			"auto-connect": true,
+			"reset-on-disconnect": true,
+			"reset-on-blur": 30000,
+			"items": {},
+			"messages-delay": 300,
+			"messages-timeout": 3000,
+			"messages": [
+				{
+					"id": 89,
+					"action": "read",
+					"data": [
+						[
+							"HB",
+							"u8",
+							"0"
+						],
+						[
+							"LB",
+							"u8",
+							"0"
+						]
+					]
+				},
+				{
+					"id": 16,
+					"action": "read"
+				},
+				{
+					"id": 24,
+					"action": "read"
+				},
+				{
+					"id": 48,
+					"action": "read"
+				},
+				{
+					"id": 49,
+					"action": "read"
+				},
+				{
+					"id": 1,
+					"action": "read"
+				},
+				{
+					"id": 57,
+					"action": "read"
+				},
+				{
+					"id": 89,
+					"action": "read",
+					"data": [
+						[
+							"HB",
+							"u8",
+							"17"
+						],
+						[
+							"LB",
+							"u8",
+							"0"
+						]
+					]
+				},
+				{
+					"id": 17,
+					"action": "read"
+				},
+				{
+					"id": 28,
+					"action": "read"
+				}
+			],
+			"view-map-update": [
+				{
+					"id": 89,
+					"HB": 0,
+					"action": "read",
+					"view": [
+						{
+							"item": "1",
+							"label-it": "Stato ingresso T.A.",
+							"label-en": "R.T. input state",
+							"label-bg": "Състояние вход T.A.",
+							"label-zh": "T.A.输入状态",
+							"label-cs": "Stav kontaktu T.A.",
+							"label-nl": "Status ingang T.A.",
+							"label-fr": "État entrée T.A.",
+							"label-de": "Zustand Eingang T.A.",
+							"label-el": "Κατάσταση εισόδου T.A.",
+							"label-hu": "T.A. bemenet állapota",
+							"label-pl": "Stan wejścia T.O.",
+							"label-pt": "Estado entrada T.A.",
+							"label-ro": "Stare intrare T.A.",
+							"label-ru": "Состояние входа T.помещ.",
+							"label-sk": "Stav vstupu T.A.",
+							"label-sl": "Stanje na vhodu T.A.",
+							"label-es": "Estado entrada T.A.",
+							"label-tr": "T.A. Giriş durumu",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"6"
+								],
+								"match": [
+									"0",
+									"1"
+								],
+								"match-return": [
+									"Off",
+									"On"
+								]
+							}
+						}
+					]
+				},
+				{
+					"id": 16,
+					"action": "read",
+					"view": [
+						{
+							"item": "2",
+							"label-it": "Temp. Set Ambiente",
+							"label-en": "Room Set",
+							"label-bg": "Темп. настр. помещение",
+							"label-zh": "环境设定温度",
+							"label-cs": "Nastavení tepl. prostředí",
+							"label-nl": "Temp. Set Omgeving",
+							"label-fr": "Temp. Set d’ambiance",
+							"label-de": "Temp. Set Raum",
+							"label-el": "Θερμοκ. Ρύθμιση περιβάλλοντος",
+							"label-hu": "Hőm. Szobahőm. Beáll.",
+							"label-pl": "Temp. Ustawienia otoczenia",
+							"label-pt": "Temp. Set Ambiente",
+							"label-ro": "Temp. Set ambient",
+							"label-ru": "Заданная темп. в помещении",
+							"label-sk": "Nast. teploty prostredia",
+							"label-sl": "Temp. Set okolje",
+							"label-es": "Temp. Ajuste Ambiente",
+							"label-tr": "Sıcaklık Ortam set",
+							"decimal": 1,
+							"suffix": " °C",
+							"return": [
+								"f8.8"
+							]
+						}
+					]
+				},
+				{
+					"id": 24,
+					"action": "read",
+					"view": [
+						{
+							"item": "3",
+							"label-it": "Temp. Sonda Ambiente",
+							"label-en": "Room temperature",
+							"label-bg": "Темп. стайна сонда",
+							"label-zh": "环境探头温度",
+							"label-cs": "Naměřená tepl. prostředí",
+							"label-nl": "Temp. Omgevingssonde",
+							"label-fr": "Temp. Sonde d'ambiance",
+							"label-de": "Temp. Raumsonde",
+							"label-el": "Θερμοκ. Αισθητήρας περιβάλλοντος",
+							"label-hu": "Hőm. Szobahőm. Érzékelő",
+							"label-pl": "Temp. Sondy otoczenia",
+							"label-pt": "Temp. Sonda Ambiente",
+							"label-ro": "Temp. Sondă ambient",
+							"label-ru": "Темп. Датчика помещения",
+							"label-sk": "Tepl. sonda prostredia",
+							"label-sl": "Temp. Sonda okolje",
+							"label-es": "Temp. Sonda Ambiente",
+							"label-tr": "Sıcaklık Ortam probu",
+							"decimal": 1,
+							"suffix": " °C",
+							"return": [
+								"f8.8"
+							]
+						}
+					]
+				},
+				{
+					"id": 48,
+					"action": "read",
+					"view": [
+						{
+							"item": "4",
+							"label-it": "Limite superiore temp. acqua calda",
+							"label-en": "DHW upper bound",
+							"label-bg": "Горна граница темп. гореща вода",
+							"label-zh": "热水温度上限",
+							"label-cs": "Horní limit tepl. TUV",
+							"label-nl": "Bovenste limiet temp. warm water",
+							"label-fr": "Limite supérieure temp. eau chaude",
+							"label-de": "Obere Temp.-Grenze Warmwasser",
+							"label-el": "Ανώτατο όριο θερμοκρασίας ζεστού νερού",
+							"label-hu": "Meleg víz hőm. felső határa",
+							"label-pl": "Górny limit temp. wody ciepłej",
+							"label-pt": "Limite superior temp. água quente",
+							"label-ro": "Limită superioară a temp. apei calde",
+							"label-ru": "Верхний предел темп. горячей воды",
+							"label-sk": "Horný limit tepl. teplej vody",
+							"label-sl": "Zgornja omejit. temp.vroče vode",
+							"label-es": "Límite superior temp. agua caliente",
+							"label-tr": "Sıcak su maks. sıcak. limiti",
+							"decimal": 0,
+							"suffix": " °C",
+							"return": [
+								"HB",
+								"u8"
+							]
+						},
+						{
+							"item": "5",
+							"label-it": "Limite inferiore temp. acqua calda",
+							"label-en": "DHW lower bound",
+							"label-bg": "Долна граница темп. гореща вода",
+							"label-zh": "热水温度下限",
+							"label-cs": "Dolní limit tepl. TUV",
+							"label-nl": "Onderste limiet temp. warm water",
+							"label-fr": "Limite inférieure temp. eau chaude",
+							"label-de": "Untere Temp.-Grenze Warmwasser",
+							"label-el": "Κατώτατο όριο θερμοκρασίας ζεστού νερού",
+							"label-hu": "Meleg víz hőm. alsó határa",
+							"label-pl": "Dolny limit temp. wody ciepłej",
+							"label-pt": "Limite inferior temp. água quente",
+							"label-ro": "Limită inferioară a temp. apei calde",
+							"label-ru": "Нижний предел темп. горячей воды",
+							"label-sk": "Dolný limit tepl. teplej vody",
+							"label-sl": "Spodnja omejit. temp.vroče vode",
+							"label-es": "Límite inferior temp. agua caliente",
+							"label-tr": "Sıcak su min. sıcak. limiti",
+							"decimal": 0,
+							"suffix": " °C",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"id": 49,
+					"action": "read",
+					"view": [
+						{
+							"item": "6",
+							"label-it": "Limite superiore temp. riscaldamento",
+							"label-en": "CH upper bound",
+							"label-bg": "Горна граница темп. отопление",
+							"label-zh": "供暖温度上限",
+							"label-cs": "Horní limit teploty vytápění",
+							"label-nl": "Bovenste limiet temp. verwarming",
+							"label-fr": "Limite supérieure temp. chauffage",
+							"label-de": "Obere Temp.-Grenze Heizung",
+							"label-el": "Ανώτατο όριο θερμοκρασίας θέρμανσης",
+							"label-hu": "Fűtés hőm. felső határa",
+							"label-pl": "Górny limit temp. ogrzewania",
+							"label-pt": "Limite superior temp. aquecimento",
+							"label-ro": "Limită superioară temp. de încălzire",
+							"label-ru": "Верхний предел темп. отопления",
+							"label-sk": "Horný limit tepl. vykurovania",
+							"label-sl": "Zgornja omejit. temp.ogrevanja",
+							"label-es": "Límite superior temp. calefacción",
+							"label-tr": "Isıtma maks. sıcak. limiti",
+							"decimal": 0,
+							"suffix": " °C",
+							"return": [
+								"HB",
+								"u8"
+							]
+						},
+						{
+							"item": "7",
+							"label-it": "Limite inferiore temp. riscaldamento",
+							"label-en": "CH lower bound",
+							"label-bg": "Долна граница темп. отопление",
+							"label-zh": "供暖温度下限",
+							"label-cs": "Dolní limit teploty vytápění",
+							"label-nl": "Onderste limiet temp. verwarming",
+							"label-fr": "Limite inférieure temp. chauffage",
+							"label-de": "Untere Temp.-Grenze Heizung",
+							"label-el": "Κατώτατο όριο θερμοκρασίας θέρμανσης",
+							"label-hu": "Fűtés hőm. alsó határa",
+							"label-pl": "Dolny limit temp. ogrzewania",
+							"label-pt": "Limite inferior temp. aquecimento",
+							"label-ro": "Limită inferioară încălzire",
+							"label-ru": "Нижний предел темп. отопления",
+							"label-sk": "Dolný limit tepl. vykurovania",
+							"label-sl": "Spodnja omejit. temp.ogrevanja",
+							"label-es": "Límite inferior temp. calefacción",
+							"label-tr": "Isıtma min. sıcak. limiti",
+							"decimal": 0,
+							"suffix": " °C",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"id": 1,
+					"action": "read",
+					"view": [
+						{
+							"item": "8",
+							"label-it": "Set point riscaldamento",
+							"label-en": "CH set point",
+							"label-bg": "Настройка отопление",
+							"label-zh": "供暖设定点",
+							"label-cs": "Nastavení tepl. vytápění",
+							"label-nl": "Setpoint verwarming",
+							"label-fr": "Point de consigne chauffage",
+							"label-de": "Set point Heizung",
+							"label-el": "Σημείο ρύθμισης θέρμανσης",
+							"label-hu": "Beállított fűtési érték",
+							"label-pl": "Punkt nastawczy ogrzewania",
+							"label-pt": "Set point aquecimento",
+							"label-ro": "Set point încălzire",
+							"label-ru": "Уставка отопления",
+							"label-sk": "Set point vykurovania",
+							"label-sl": "Set point ogrevanja",
+							"label-es": "Set point calefacción",
+							"label-tr": "Isıtma noktası ayarı",
+							"decimal": 0,
+							"suffix": " °C",
+							"return": [
+								"HB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"id": 57,
+					"action": "read",
+					"view": [
+						{
+							"item": "9",
+							"label-it": "Set massimo curva climatica",
+							"label-en": "OTC set point",
+							"label-bg": "Настр. максимум климатична крива",
+							"label-zh": "气候曲线最大设定",
+							"label-cs": "Max. tepl. vytápění dle klimatické křivky",
+							"label-nl": "Max. set klimaatcurve",
+							"label-fr": "Set maximum courbe climatique",
+							"label-de": "Set Max. Klimakurve",
+							"label-el": "Μέγιστη ρύθμιση κλιματολογικής καμπύλης",
+							"label-hu": "Max. hőm. görbe beállítása",
+							"label-pl": "Maksymalne ustawienie krzywej klimatycznej",
+							"label-pt": "Set máximo curva climática",
+							"label-ro": "Set valoare maximă curbă climatică",
+							"label-ru": "Макс. уставка климатической кривой",
+							"label-sk": "Maximálny set klimatickej krivky",
+							"label-sl": "Set maks.klimatske krivulje",
+							"label-es": "Ajuste máximo curva climática",
+							"label-tr": "Maks. klimatik eğri ayarı",
+							"decimal": 0,
+							"suffix": " °C",
+							"return": [
+								"HB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"id": 89,
+					"HB": 17,
+					"action": "read",
+					"view": [
+						{
+							"item": "10",
+							"label-it": "Set massimo riscaldamento utente",
+							"label-en": "CH user set point",
+							"label-bg": "Настр. максимум отопление потребител",
+							"label-zh": "用户供暖最大设定",
+							"label-cs": "Nastavení max. tepl. vytápění uživatelem",
+							"label-nl": "Max. set verwarming gebruiker",
+							"label-fr": "Set maximum chauffage utilisateur",
+							"label-de": "Set Max. Heizen Benutzer",
+							"label-el": "Μέγιστη ρύθμιση θέρμανσης χρήστη",
+							"label-hu": "Maxi. fűtés felhasználói beállítás",
+							"label-pl": "Maksymalne ustawienie ogrzewania użytkownika",
+							"label-pt": "Potência máxima de aquecimento utilizador",
+							"label-ro": "Set valoare maximă încălzire utilizator",
+							"label-ru": "Макс. уставка отопления пользователя",
+							"label-sk": "Maximálny set vykurovania používateľa",
+							"label-sl": "Set maks. ogrevanja uporabnik",
+							"label-es": "Ajuste máximo calefacción usuario",
+							"label-tr": "Maks. kullanıcı ısıtma ayarı",
+							"decimal": 0,
+							"suffix": " °C",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"id": 17,
+					"action": "read",
+					"view": [
+						{
+							"item": "11",
+							"label-it": "Modulazione",
+							"label-en": "Modulation",
+							"label-bg": "Модулация",
+							"label-zh": "调制",
+							"label-cs": "Modulace",
+							"label-nl": "Modulatie",
+							"label-fr": "Modulation",
+							"label-de": "Modulation",
+							"label-el": "Διαμόρφωση",
+							"label-hu": "Moduláció",
+							"label-pl": "Modulacja",
+							"label-pt": "Modulação",
+							"label-ro": "Modulare",
+							"label-ru": "Модуляция",
+							"label-sk": "Modulácia",
+							"label-sl": "Modulacija",
+							"label-es": "Modulación",
+							"label-tr": "Modül",
+							"decimal": 0,
+							"suffix": " %",
+							"return": [
+								"HB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"id": 28,
+					"action": "read",
+					"view": [
+						{
+							"item": "12",
+							"label-it": "Temp. ritorno riscaldamento",
+							"label-en": "CH return water temperature",
+							"label-bg": "Темп. връщане отопление",
+							"label-zh": "供暖返回温度",
+							"label-cs": "Tepl. zpátečky vytápění",
+							"label-nl": "Temp. retour verwarming",
+							"label-fr": "Temp. retour chauffage",
+							"label-de": "Rücklauftemp. Heizung",
+							"label-el": "Θερμοκρασία επιστροφής θέρμανσης",
+							"label-hu": "Hőm. a visszatérő fűtőcsövön",
+							"label-pl": "Temp. powrotu ogrzewania",
+							"label-pt": "Temp. retorno aquecimento",
+							"label-ro": "Temp. retur încălzire",
+							"label-ru": "Темп. возврата отопления",
+							"label-sk": "Tepl. spiatočky vykurovania",
+							"label-sl": "Temp. na povratku ogrevanja",
+							"label-es": "Temp. de retorno calefacción",
+							"label-tr": "Isıtma tahliye sıcaklığı",
+							"decimal": 0,
+							"suffix": " °C",
+							"return": [
+								"HB",
+								"u8"
+							]
+						}
+					]
+				}
+			],
+			"commands": []
+		},
+		"fault-tree": {
+			"auto-connect": true,
+			"reset-on-disconnect": false,
+			"reset-on-blur": 30000,
+			"items": {},
+			"messages": [],
+			"messages-delay": 300,
+			"messages-timeout": 3000,
+			"alive-command-timeout": 5000,
+			"view-map-update": [
+				{
+					"action": "read",
+					"id": 12,
+					"view": [
+						{
+							"item": "fault-list",
+							"return": [
+								"HB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"action": "read",
+					"id": 13,
+					"view": [
+						{
+							"item": "fault-item",
+							"return": [
+								[
+									"HB",
+									"u8"
+								],
+								[
+									"LB",
+									"u8"
+								]
+							]
+						}
+					]
+				}
+			],
+			"commands": [
+				{
+					"action": "read",
+					"data": [
+						0,
+						0
+					],
+					"id": 12,
+					"item": "fault-list"
+				},
+				{
+					"action": "read",
+					"data": [
+						[
+							"HB",
+							"u8",
+							"fault-index"
+						]
+					],
+					"id": 13,
+					"item": "fault-item"
+				},
+				{
+					"item": "alive",
+					"id": 88,
+					"action": "read"
+				}
+			]
+		},
+		"fault-tree-detail": {
+			"auto-connect": false,
+			"reset-on-disconnect": false,
+			"reset-on-blur": 30000,
+			"commands": [],
+			"items": {},
+			"messages": [],
+			"messages-delay": 500,
+			"messages-timeout": 3000,
+			"view-map-update": []
+		}
+	},
+	"wfc": {
+		"length": 13,
+		"parameters": [
+			{
+				"index": 4,
+				"label-it": "Curva climatica",
+				"label-en": "OTC curve",
+				"label-bg": "Климатична крива",
+				"label-zh": "气候曲线",
+				"label-cs": "Klimatická křivka",
+				"label-nl": "Klimaatcurve",
+				"label-fr": "Courbe climatique",
+				"label-de": "Klimakurve",
+				"label-el": "Κλιματολογική καμπύλη",
+				"label-hu": "Hőm görbe",
+				"label-pl": "Krzywa klimatyczna",
+				"label-pt": "Curva climática",
+				"label-ro": "Curbă climatică",
+				"label-ru": "Климатическая кривая",
+				"label-sk": "Klimatická krivka",
+				"label-sl": "Klimatska krivulja",
+				"label-es": "Curva climática",
+				"label-tr": "Klimatik eğri",
+				"type": "range",
+				"min": 1,
+				"max": 9,
+				"decimal": 1,
+				"step": 0.1,
+				"divisor": 10,
+				"suffix": ""
+			},
+			{
+				"index": 5,
+				"label-it": "Offset temp. riscaldamento",
+				"label-en": "Offset CH temp.",
+				"label-bg": "Offset темп. отопление",
+				"label-zh": "供暖温度偏移值",
+				"label-cs": "Offset tepl. vytápění",
+				"label-nl": "Offset temp. verwarming",
+				"label-fr": "Offset temp. chauffage",
+				"label-de": "Offset Temp. Heizung",
+				"label-el": "Μετατόπιση θερμοκ. θέρμανσης",
+				"label-hu": "Fűtési hőm. offset",
+				"label-pl": "Offset temp. ogrzewania",
+				"label-pt": "Offset temp. aquecimento",
+				"label-ro": "Offset temp. încălzire",
+				"label-ru": "Смещение темп. отопления",
+				"label-sk": "Offset tepl. vykurovania",
+				"label-sl": "Offset temp. ogrevanja",
+				"label-es": "Offset temp. calefacción",
+				"label-tr": "Isıtma sıcaklık offset",
+				"type": "range",
+				"view-type": "s8",
+				"min": -15,
+				"max": 15,
+				"step": 1,
+				"divisor": 1,
+				"suffix": " °C"
+			},
+			{
+				"index": 6,
+				"label-it": "Uso sonda esterna",
+				"label-en": "Outdoor sensor",
+				"label-bg": "Използване външна сонда",
+				"label-zh": "使用外部探头",
+				"label-cs": "Použití venkovní sondy",
+				"label-nl": "Gebruik externe sonde",
+				"label-fr": "Utilisation Sonde extérieure",
+				"label-de": "Gebrauch externe Sonde",
+				"label-el": "Χρήση εξωτερικού αισθητήρα",
+				"label-hu": "Külső érzékelő használata",
+				"label-pl": "Użycie sondy zewnętrznej",
+				"label-pt": "Uso sonda externa",
+				"label-ro": "Utilizare sondă pentru exterior",
+				"label-ru": "Использование внешнего датчика",
+				"label-sk": "Používanie vonkajšej sondy",
+				"label-sl": "Uporaba zunanje sonde",
+				"label-es": "Uso sonda externa",
+				"label-tr": "Dış ortam probu kullanımı",
+				"type": "switch",
+				"switch-options": [
+					{
+						"label-it": "OFF",
+						"label-en": "OFF",
+						"label-cs": "VYP",
+						"value": 0
+					},
+					{
+						"label-it": "ON",
+						"label-en": "ON",
+						"label-cs": "ZAP",
+						"value": 1
+					}
+				]
+			},
+			{
+				"index": 7,
+				"label-it": "Uso modulazione",
+				"label-en": "Modulation",
+				"label-bg": "Използване модулация",
+				"label-zh": "使用调制",
+				"label-cs": "Použití modulace",
+				"label-nl": "Gebruik modulatie",
+				"label-fr": "Utilisation modulation",
+				"label-de": "Gebrauch Modulation",
+				"label-el": "Χρήση διαμόρφωσης",
+				"label-hu": "Moduláció használata",
+				"label-pl": "Użycie modulacji",
+				"label-pt": "Uso modulação",
+				"label-ro": "Utilizare modulare",
+				"label-ru": "Использование модуляции",
+				"label-sk": "Použitie modulácie",
+				"label-sl": "Uporaba modulacije",
+				"label-es": "Uso modulación",
+				"label-tr": "Modül kullanımı",
+				"type": "switch",
+				"switch-options": [
+					{
+						"label-it": "OFF",
+						"label-en": "OFF",
+						"label-cs": "VYP",
+						"value": 0
+					},
+					{
+						"label-it": "ON",
+						"label-en": "ON",
+						"label-cs": "ZAP",
+						"value": 1
+					}
+				]
+			},
+			{
+				"index": 8,
+				"label-it": "Temp. di isteresi",
+				"label-en": "Hysteresis temp.",
+				"label-bg": "Темп. на хистерезис",
+				"label-zh": "滞后的温度",
+				"label-cs": "Tepl. hystereze",
+				"label-nl": "Hysteresistemp.",
+				"label-fr": "Temp. d’hystérésis",
+				"label-de": "Hysterese-Temp.",
+				"label-el": "Θερμοκρασία υστέρησης",
+				"label-hu": "Hiszterézis hőm.",
+				"label-pl": "Temp. histerezy",
+				"label-pt": "Temp. de histerese",
+				"label-ro": "Temp. de histerezis",
+				"label-ru": "Темп. гистерезиса",
+				"label-sk": "Tepl. hysterézy",
+				"label-sl": "Temp. histereze",
+				"label-es": "Temp. de histéresis",
+				"label-tr": "Histeriz sıcak.",
+				"type": "range",
+				"min": 0.1,
+				"max": 1,
+				"decimal": 1,
+				"step": 0.1,
+				"divisor": 10,
+				"suffix": " °C"
+			},
+			{
+				"index": 9,
+				"label-it": "Uso sonda ambiente",
+				"label-en": "Room sensor",
+				"label-bg": "Употреба стайна сонда",
+				"label-zh": "使用环境探头",
+				"label-cs": "Použití sondy prostředí",
+				"label-nl": "Gebruik omgevingssonde",
+				"label-fr": "Utilisation Sonde d'ambiance",
+				"label-de": "Gebrauch Raumsonde",
+				"label-el": "Χρήση αισθητήρα περιβάλλοντος",
+				"label-hu": "Szobahőm. érzékelő használata",
+				"label-pl": "Użycie sondy otoczenia",
+				"label-pt": "Uso sonda ambiente",
+				"label-ro": "Utilizare sondă ambient",
+				"label-ru": "Использование датчика помещения",
+				"label-sk": "Použitie sondy prostredia",
+				"label-sl": "Uporaba sonde za okolje",
+				"label-es": "Uso sonda ambiente",
+				"label-tr": "Ortam probu kullanımı",
+				"type": "switch",
+				"switch-options": [
+					{
+						"label-it": "OFF",
+						"label-en": "OFF",
+						"label-cs": "VYP",
+						"value": 0
+					},
+					{
+						"label-it": "ON",
+						"label-en": "ON",
+						"label-cs": "ZAP",
+						"value": 1
+					}
+				]
+			},
+			{
+				"index": 10,
+				"label-it": "Dimensione/tipo edificio",
+				"label-en": "Build dimension/type",
+				"label-bg": "Размери/вид на сградата",
+				"label-zh": "建筑大小/类型",
+				"label-cs": "Tepelná setrvačnost budovy",
+				"label-nl": "Afmeting/type gebouw",
+				"label-fr": "Dimension/type édifice",
+				"label-de": "Gebäudetyp/-größe",
+				"label-el": "Διάσταση/τύπου κτιρίου",
+				"label-hu": "Épület mérete/típusa",
+				"label-pl": "Wymiary/rodzaj budynku",
+				"label-pt": "Dimensão/tipo edifício",
+				"label-ro": "Dimensiune/tip clădire",
+				"label-ru": "Размеры/тип здания",
+				"label-sk": "Rozmery/typ budovy",
+				"label-sl": "Dimenzija/tip stavbe",
+				"label-es": "Dimensión/tipo edificio",
+				"label-tr": "Bina ölçüleri/tipi",
+				"type": "range",
+				"min": 1,
+				"max": 20,
+				"step": 1,
+				"divisor": 1,
+				"suffix": ""
+			},
+			{
+				"index": 11,
+				"label-it": "Uso NTC (temp. ambiente/esterna)",
+				"label-en": "NTC use (room/outdoor)",
+				"label-bg": "Употреба NTC (стайна/външна темп.)",
+				"label-zh": "使用 NTC (环境/外部温度)",
+				"label-cs": "Použití NTC (tepl. prostředí/venkovní tepl.)",
+				"label-nl": "Gebruik NTC (omgevingstemp./externe temp.)",
+				"label-fr": "Utilisation NTC (temp. ambiante/extérieure)",
+				"label-de": "Gebrauch NTC (Raum-/Außentemp.)",
+				"label-el": "Χρήση NTC (θερμοκ. περιβάλλοντος/εξωτερική)",
+				"label-hu": "NTC használata (szoba-/külső hőm.)",
+				"label-pl": "Użycie NTC (temp. otoczenia/zewnętrzna)",
+				"label-pt": "Uso NTC (temp. ambiente/externa)",
+				"label-ro": "Utilizare NTC (temp. ambient/exterior)",
+				"label-ru": "Использование NTC (темп. в помещ./наружная)",
+				"label-sk": "Použitie NTC (tepl. prostredia/vonkajšia)",
+				"label-sl": "Uporaba NTC (temp. prostora/zunanja)",
+				"label-es": "Uso NTC (temp. ambiente/exterior)",
+				"label-tr": "NTC kullanımı (ortam/dış ortam sıcaklığı)",
+				"type": "switch",
+				"switch-options": [
+					{
+						"label-it": "Ambiente",
+						"label-en": "Room",
+						"label-bg": "Стайна",
+						"label-zh": "环境",
+						"label-cs": "Prostředí",
+						"label-nl": "Omgeving",
+						"label-fr": "Ambiance",
+						"label-de": "Raum",
+						"label-el": "Περιβάλλον",
+						"label-hu": "Szobahőm",
+						"label-pl": "Otoczenie",
+						"label-pt": "Ambiente",
+						"label-ro": "Ambient",
+						"label-ru": "Помещение",
+						"label-sk": "Prostredie",
+						"label-sl": "Prostor",
+						"label-es": "Ambiente",
+						"label-tr": "Ortam",
+						"value": 0
+					},
+					{
+						"label-it": "Esterna",
+						"label-en": "Outdoor",
+						"label-bg": "Външна",
+						"label-zh": "外部",
+						"label-cs": "Venkovní",
+						"label-nl": "Extern",
+						"label-fr": "Extérieure",
+						"label-de": "Außen",
+						"label-el": "Εξωτερικό",
+						"label-hu": "Külső hőm.",
+						"label-pl": "Zewnętrzna",
+						"label-pt": "Externa",
+						"label-ro": "Exterior",
+						"label-ru": "Наружная",
+						"label-sk": "Vonkajšia",
+						"label-sl": "Zunanja",
+						"label-es": "Exterior",
+						"label-tr": "Dış",
+						"value": 1
+					}
+				]
+			},
+			{
+				"index": 14,
+				"label-it": "Uso antigelo ambiente",
+				"label-en": "Nofrost",
+				"label-bg": "Употр. функция против замръзване помещение",
+				"label-zh": "使用环境防冻液",
+				"label-cs": "Použití ochrany proti zamrznutí prostředí",
+				"label-nl": "Gebruik antivries omgeving",
+				"label-fr": "Utilisation antigel ambiant",
+				"label-de": "Gebrauch Frostschutz Raum",
+				"label-el": "Χρήση αντιψυκτικού περιβάλλοντος",
+				"label-hu": "Fagyvédelem használata",
+				"label-pl": "Użycie ochrony przed zamarzaniem",
+				"label-pt": "Uso anticongelante ambiente",
+				"label-ro": "Utilizare antigel ambient",
+				"label-ru": "Использование защиты от замерзания помещения",
+				"label-sk": "Použitie ochrany proti zamrznutiu prostredia",
+				"label-sl": "Uporaba proti zmrzovanju prostora",
+				"label-es": "Uso antihielo ambiente",
+				"label-tr": "Ortam antifriz kullanımı",
+				"type": "switch",
+				"switch-options": [
+					{
+						"label-it": "OFF",
+						"label-en": "OFF",
+						"label-cs": "VYP",
+						"value": 0
+					},
+					{
+						"label-it": "ON",
+						"label-en": "ON",
+						"label-cs": "ZAP",
+						"value": 1
+					}
+				]
+			},
+			{
+				"index": 15,
+				"label-it": "Set temp. antigelo ambiente",
+				"label-en": "Set nofrost",
+				"label-bg": "Настр. темп. против замръзване на помещението",
+				"label-zh": "设定环境防冻液温度",
+				"label-cs": "Nast. tepl. ochrany proti zamrznutí prostředí",
+				"label-nl": "Set temp. antivries omgeving",
+				"label-fr": "Set temp. antigel ambiant",
+				"label-de": "Set Temp. Frostschutz Raum",
+				"label-el": "Ρύθμιση Θερμοκρασίας αντιψυκτικού περιβάλλοντος",
+				"label-hu": "Fagyvédelem bekapcsolási hőmérséklete",
+				"label-pl": "Ustawienie temp. ochrony przed zamarzaniem",
+				"label-pt": "Set temp. anticongelante ambiente",
+				"label-ro": "Set temp. antigel ambient",
+				"label-ru": "Уставка температуры для защиты от замерзания помещения",
+				"label-sk": "Set tepl. ochrany proti zamrznutiu prostredia",
+				"label-sl": "Set temp. proti zmrzovanju prostora",
+				"label-es": "Ajuste temp. antihielo ambiente",
+				"label-tr": "Ortam antifriz sıcak. ayarı",
+				"type": "range",
+				"min": 0.5,
+				"max": 10,
+				"step": 0.1,
+				"decimal": 1,
+				"divisor": 10,
+				"suffix": " °C"
+			},
+			{
+				"index": 16,
+				"label-it": "Set minimo Riscaldamento (SetMinCH)",
+				"label-en": "Set min heating (SetMinCH)",
+				"label-bg": "Настр. минимум отопление (SetMinCH)",
+				"label-zh": "供暖最小设定 (SetMinCH)",
+				"label-cs": "Nast. minima vytápění (SetMinCH)",
+				"label-nl": "Min. set verwarming (SetMinCH)",
+				"label-fr": "Set minimum Chauffage (SetMinCH)",
+				"label-de": "Set Min. Heizen (SetMinCH)",
+				"label-el": "Ελάχιστη ρύθμιση θερμοκρασίας (SetMinCH)",
+				"label-hu": "Min. fűtés beállítás (SetMinCH)",
+				"label-pl": "Ustawienie temp. minimalnej ogrzewania (SetMinCH)",
+				"label-pt": "Set mínimo Aquecimento (SetMinCH)",
+				"label-ro": "Set valoare minimă încălzire (SetMinCH)",
+				"label-ru": "Минимальная уставка отопления (SetMinCH)",
+				"label-sk": "Set minima vykurovania (SetMinCH)",
+				"label-sl": "Set minimalno ogrevanja (SetMinCH)",
+				"label-es": "Ajuste mínimo Calefacción (SetMinCH)",
+				"label-tr": "Min ısıtma ayarı (SetMinCH)",
+				"type": "range",
+				"min": 10,
+				"max": 85,
+				"step": 1,
+				"divisor": 1,
+				"suffix": " °C"
+			},
+			{
+				"index": 17,
+				"label-it": "Set massimo Riscaldamento (SetMaxCH)",
+				"label-en": "Set max heating (SetMaxCH)",
+				"label-bg": "Настр. максимум отопление (SetMaxCH)",
+				"label-zh": "供暖最大设定 (SetMaxCH)",
+				"label-cs": "Nast. maxima vytápění (SetMaxCH)",
+				"label-nl": "Max. set verwarming (SetMaxCH)",
+				"label-fr": "Set maximum Chauffage (SetMaxCH)",
+				"label-de": "Set Max. Heizen (SetMaxCH)",
+				"label-el": "Μέγιστη ρύθμιση θερμοκρασίας (SetMaxCH)",
+				"label-hu": "Max. fűtés  beállítás (SetMaxCH)",
+				"label-pl": "Ustawienie temp. maksymalnej ogrzewania (SetMaxCH)",
+				"label-pt": "Set máximo Aquecimento (SetMaxCH)",
+				"label-ro": "Set valoare maximă încălzire (SetMaxCH)",
+				"label-ru": "Максимальная уставка отопления (SetMaxCH)",
+				"label-sk": "Set maxima vykurovania (SetMaxCH)",
+				"label-sl": "Set maksimalno ogrevanja (SetMinCH)",
+				"label-es": "Ajuste máximo Calefacción (SetMaxCH)",
+				"label-tr": "Maks. ısıtma ayarı (SetMaxCH)",
+				"type": "range",
+				"min": 10,
+				"max": 85,
+				"step": 1,
+				"divisor": 1,
+				"suffix": " °C"
+			},
+			{
+				"index": 18,
+				"label-it": "Ripristino dati di fabbrica",
+				"label-en": "Data factory reset",
+				"label-bg": "Възстановяване на фабрични данни",
+				"label-zh": "工厂的数据恢复",
+				"label-cs": "Obnovení továrních dat",
+				"label-nl": "Reset fabrieksgegevens",
+				"label-fr": "Réinitialisation données d'usine",
+				"label-de": "Wiederherstellung Werkseinstellungen",
+				"label-el": "Αποκατάσταση δεδομένων εργοστασίου",
+				"label-hu": "Gyári beállítások visszaállítása",
+				"label-pl": "Przywracanie ustawień fabrycznych",
+				"label-pt": "Restabelecimento dos valores de fábrica",
+				"label-ro": "Restabilire valori setate în fabrică",
+				"label-ru": "Восстановление заводских данных",
+				"label-sk": "Obnovenie továrenských dát",
+				"label-sl": "Ponastavitev tovarniških nastavitev",
+				"label-es": "Restablecimiento de los valores de fábrica",
+				"label-tr": "Fabrika ayarlarına dön",
+				"type": "switch",
+				"switch-options": [
+					{
+						"label-it": "OFF",
+						"label-en": "OFF",
+						"label-cs": "VYP",
+						"value": 0
+					},
+					{
+						"label-it": "ON",
+						"label-en": "ON",
+						"label-cs": "ZAP",
+						"value": 1
+					}
+				]
+			}
+		]
+	}
+}

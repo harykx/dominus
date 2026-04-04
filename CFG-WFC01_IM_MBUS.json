@@ -1,0 +1,4623 @@
+{
+	"id": "WFC01_IM_MBUS",
+	"modbus": true,
+	"modbus-rs485": {
+		"value": 0
+	},
+	"manuals-url": "https://qrc02.immergas.com/3.026273-3.034903",
+	"manuals-url-bak": "https://pwa02.immergas.com/#/lookup",
+	"screens": {
+		"mb-home-landing": {
+			"auto-connect": true,
+			"reset-on-disconnect": false,
+			"reset-on-blur": 30000,
+			"items": {
+				"mb-boiler-status": {
+					"value": [
+						"enabled",
+						"blinkoff"
+					]
+				},
+				"mb-room-temp-zn1": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"suffix": " °C",
+					"decimal": 1
+				},
+				"mb-room-temp-zn2": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"suffix": " °C",
+					"decimal": 1
+				},
+				"mb-room-temp-zn3": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"suffix": " °C",
+					"decimal": 1
+				},
+				"mb-room-temp-zn4": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"suffix": " °C",
+					"decimal": 1
+				},
+				"mb-room-temp-set-zn1": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"suffix": " °C",
+					"decimal": 1
+				},
+				"mb-room-temp-set-zn2": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"suffix": " °C",
+					"decimal": 1
+				},
+				"mb-room-temp-set-zn3": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"suffix": " °C",
+					"decimal": 1
+				},
+				"mb-room-temp-set-zn4": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"suffix": " °C",
+					"decimal": 1
+				},
+				"mb-water-temp": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"suffix": " °C"
+				},
+				"mb-water-temp-set": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"min": 10,
+					"max": 65,
+					"suffix": " °C"
+				},
+				"mb-water-time-slot": {
+					"value": [
+						"disabled",
+						"off"
+					]
+				},
+				"timer-set": {
+					"value": [
+						"disabled",
+						"off"
+					],
+					"min": 0,
+					"max": 255,
+					"step": 1,
+					"format": "time",
+					"M": 1800
+				},
+				"activation": {
+					"value": [
+						"enabled",
+						"off"
+					]
+				},
+				"error-code": {
+					"value": [
+						"disabled",
+						"blinkoff"
+					]
+				},
+				"mb-functional-log": {
+					"value": [
+						"disabled"
+					]
+				}
+			},
+			"messages-delay": 50,
+			"messages-cycle-delay": 5000,
+			"messages-timeout": 3000,
+			"messages": [
+				{
+					"pdu": 2000,
+					"action": "read"
+				},
+				{
+					"pdu": 2001,
+					"action": "read"
+				},
+				{
+					"pdu": 2100,
+					"action": "read"
+				},
+				{
+					"pdu": 2101,
+					"action": "read"
+				},
+                {
+					"pdu": 2490,
+					"action": "read"
+				},
+				{
+					"pdu": 2011,
+					"action": "read"
+				},
+				{
+					"pdu": 2021,
+					"action": "read"
+				},
+				{
+					"pdu": 2031,
+					"action": "read"
+				},
+				{
+					"pdu": 2041,
+					"action": "read"
+				},
+				{
+					"pdu": 2015,
+					"action": "read"
+				},
+				{
+					"pdu": 2025,
+					"action": "read"
+				},
+				{
+					"pdu": 2035,
+					"action": "read"
+				},
+				{
+					"pdu": 2045,
+					"action": "read"
+				},
+				{
+					"pdu": 3016,
+					"action": "read"
+				},
+				{
+					"pdu": 2095,
+					"action": "read"
+				}
+			],
+			"view-map-update": [
+				{
+					"pdu": 2000,
+					"action": "write",
+					"view": [
+						{
+							"item": "mb-boiler-status",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2000,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-boiler-status",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2001,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-functional-log",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"2"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"enabled"
+							],
+							"else-value": [
+								"disabled"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2100,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-functional-log",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2101,
+					"action": "read",
+					"view": [
+						{
+							"item": "reset",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"1"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"enabled"
+							],
+							"else-value": [
+								"disabled"
+							]
+						}
+					]
+				},
+                {
+					"pdu": 2490,
+                    "action": "read",
+					"view": [
+						{
+							"item": "mb-water-time-slot",
+                            "check": {
+								"data": [
+									"u16"
+								],
+                                "match": "0"
+							},
+                            "value": [
+								"disabled"
+							],
+							"else-value": [
+								"enabled"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2011,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-room-temp-zn1",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2021,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-room-temp-zn2",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2031,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-room-temp-zn3",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2041,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-room-temp-zn4",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2015,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-room-temp-set-zn1",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2025,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-room-temp-set-zn2",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2035,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-room-temp-set-zn3",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2045,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-room-temp-set-zn4",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 3016,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-water-temp",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2095,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-water-temp-set",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2095,
+					"action": "write",
+					"view": [
+						{
+							"item": "mb-water-temp-set",
+							"value": [
+								"off",
+								"blinkon"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				}
+			],
+			"commands": [
+				{
+					"item": "mb-boiler-status",
+					"pdu": 2000,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"mb-boiler-status"
+						]
+					]
+				},
+				{
+					"item": "mb-water-temp-set",
+					"pdu": 2095,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"mb-water-temp-set"
+						]
+					]
+				}
+			]
+		},
+		"mb-zone-landing-1": {
+			"auto-connect": true,
+			"reset-on-disconnect": false,
+			"reset-on-blur": 30000,
+			"items": {
+				"mb-eco-mode": {
+					"value": [
+						"disabled",
+						"blinkoff"
+					]
+				},
+				"mb-heating-request": {
+					"value": [
+						"disabled",
+						"blinkoff"
+					]
+				},
+				"mb-boiler-status": {
+					"value": [
+						"enabled",
+						"blinkoff"
+					]
+				},
+				"mb-outdoor-temp": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"suffix": " °C",
+					"decimal": 1
+				},
+				"mb-room-temp": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"suffix": " °C",
+					"decimal": 1
+				},
+				"mb-room-temp-set": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"min": 10,
+					"max": 35,
+					"suffix": " °C",
+					"decimal": 1
+				},
+				"timer-set": {
+					"value": [
+						"disabled",
+						"off"
+					],
+					"min": 0,
+					"max": 255,
+					"step": 1,
+					"format": "time",
+					"M": 1800
+				},
+				"activation": {
+					"value": [
+						"enabled",
+						"off"
+					]
+				}
+			},
+			"messages-delay": 50,
+			"messages-cycle-delay": 5000,
+			"messages-timeout": 3000,
+			"messages": [
+				{
+					"pdu": 2000,
+					"action": "read"
+				},
+				{
+					"pdu": 2001,
+					"action": "read"
+				},
+				{
+					"pdu": 2010,
+					"action": "read"
+				},
+				{
+					"pdu": 3002,
+					"action": "read"
+				},
+				{
+					"pdu": 2011,
+					"action": "read"
+				},
+				{
+					"pdu": 2015,
+					"action": "read"
+				}
+			],
+			"view-map-update": [
+				{
+					"pdu": 2000,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-boiler-status",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2010,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-heating-request",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"3"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"on",
+								"enabled"
+							],
+							"else-value": [
+								"off",
+								"disabled"
+							],
+							"return": [
+								"LB",
+								"flag8",
+								"3"
+							]
+						},
+						{
+							"item": "mb-eco-mode",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"267"
+								],
+								"match": [
+									"010",
+									"001",
+									"100"
+								],
+								"match-return": [
+									"comfort",
+									"economy",
+									"manual"
+								]
+							},
+							"value": [
+								"on",
+								"enabled"
+							],
+							"else-value": [
+								"off",
+								"disabled"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2001,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-water-request",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"0"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"on"
+							],
+							"else-value": [
+								"off"
+							],
+							"return": [
+								"LB",
+								"flag8",
+								"0"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 3002,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-outdoor-temp",
+							"return": [
+								"temp"
+							]
+						},
+						{
+							"item": "mb-outdoor-temp",
+							"check": {
+								"data": [
+									"s16"
+								],
+								"match": -9999
+							},
+							"value": [
+								"disabled"
+							],
+							"else-value": [
+								"enabled"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2011,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-room-temp",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2015,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-room-temp-set",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2015,
+					"action": "write",
+					"view": [
+						{
+							"item": "mb-room-temp-set",
+							"value": [
+								"on",
+								"blinkon"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				}
+			],
+			"commands": [
+				{
+					"item": "mb-room-temp-set",
+					"pdu": 2015,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"mb-room-temp-set"
+						]
+					]
+				}
+			]
+		},
+		"mb-zone-landing-2": {
+			"auto-connect": true,
+			"reset-on-disconnect": false,
+			"reset-on-blur": 30000,
+			"items": {
+				"mb-eco-mode": {
+					"value": [
+						"disabled",
+						"blinkoff"
+					]
+				},
+				"mb-heating-request": {
+					"value": [
+						"disabled",
+						"blinkoff"
+					]
+				},
+				"mb-boiler-status": {
+					"value": [
+						"enabled",
+						"blinkoff"
+					]
+				},
+				"mb-outdoor-temp": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"suffix": " °C",
+					"decimal": 1
+				},
+				"mb-room-temp": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"suffix": " °C",
+					"decimal": 1
+				},
+				"mb-room-temp-set": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"min": 10,
+					"max": 35,
+					"suffix": " °C",
+					"decimal": 1
+				},
+				"timer-set": {
+					"value": [
+						"disabled",
+						"off"
+					],
+					"min": 0,
+					"max": 255,
+					"step": 1,
+					"format": "time",
+					"M": 1800
+				},
+				"activation": {
+					"value": [
+						"enabled",
+						"off"
+					]
+				}
+			},
+			"messages-delay": 50,
+			"messages-cycle-delay": 5000,
+			"messages-timeout": 3000,
+			"messages": [
+				{
+					"pdu": 2000,
+					"action": "read"
+				},
+				{
+					"pdu": 2001,
+					"action": "read"
+				},
+				{
+					"pdu": 2020,
+					"action": "read"
+				},
+				{
+					"pdu": 3002,
+					"action": "read"
+				},
+				{
+					"pdu": 2021,
+					"action": "read"
+				},
+				{
+					"pdu": 2025,
+					"action": "read"
+				}
+			],
+			"view-map-update": [
+				{
+					"pdu": 2000,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-boiler-status",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2020,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-heating-request",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"3"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"on",
+								"enabled"
+							],
+							"else-value": [
+								"off",
+								"disabled"
+							],
+							"return": [
+								"LB",
+								"flag8",
+								"3"
+							]
+						},
+						{
+							"item": "mb-eco-mode",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"267"
+								],
+								"match": [
+									"010",
+									"001",
+									"100"
+								],
+								"match-return": [
+									"comfort",
+									"economy",
+									"manual"
+								]
+							},
+							"value": [
+								"on",
+								"enabled"
+							],
+							"else-value": [
+								"off",
+								"disabled"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2001,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-water-request",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"0"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"on"
+							],
+							"else-value": [
+								"off"
+							],
+							"return": [
+								"LB",
+								"flag8",
+								"0"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 3002,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-outdoor-temp",
+							"return": [
+								"temp"
+							]
+						},
+						{
+							"item": "mb-outdoor-temp",
+							"check": {
+								"data": [
+									"s16"
+								],
+								"match": -9999
+							},
+							"value": [
+								"disabled"
+							],
+							"else-value": [
+								"enabled"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2021,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-room-temp",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2025,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-room-temp-set",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2025,
+					"action": "write",
+					"view": [
+						{
+							"item": "mb-room-temp-set",
+							"value": [
+								"on",
+								"blinkon"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				}
+			],
+			"commands": [
+				{
+					"item": "mb-room-temp-set",
+					"pdu": 2025,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"mb-room-temp-set"
+						]
+					]
+				}
+			]
+		},
+		"mb-zone-landing-3": {
+			"auto-connect": true,
+			"reset-on-disconnect": false,
+			"reset-on-blur": 30000,
+			"items": {
+				"mb-heating-request": {
+					"value": [
+						"disabled",
+						"blinkoff"
+					]
+				},
+				"mb-boiler-status": {
+					"value": [
+						"enabled",
+						"blinkoff"
+					]
+				},
+				"mb-outdoor-temp": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"suffix": " °C",
+					"decimal": 1
+				},
+				"mb-room-temp": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"suffix": " °C",
+					"decimal": 1
+				},
+				"mb-room-temp-set": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"min": 10,
+					"max": 35,
+					"suffix": " °C",
+					"decimal": 1
+				},
+				"timer-set": {
+					"value": [
+						"disabled",
+						"off"
+					],
+					"min": 0,
+					"max": 255,
+					"step": 1,
+					"format": "time",
+					"M": 1800
+				},
+				"activation": {
+					"value": [
+						"enabled",
+						"off"
+					]
+				}
+			},
+			"messages-delay": 50,
+			"messages-cycle-delay": 5000,
+			"messages-timeout": 3000,
+			"messages": [
+				{
+					"pdu": 2000,
+					"action": "read"
+				},
+				{
+					"pdu": 2001,
+					"action": "read"
+				},
+				{
+					"pdu": 2030,
+					"action": "read"
+				},
+				{
+					"pdu": 3002,
+					"action": "read"
+				},
+				{
+					"pdu": 2031,
+					"action": "read"
+				},
+				{
+					"pdu": 2035,
+					"action": "read"
+				}
+			],
+			"view-map-update": [
+				{
+					"pdu": 2000,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-boiler-status",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2030,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-heating-request",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"3"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"on",
+								"enabled"
+							],
+							"else-value": [
+								"off",
+								"disabled"
+							],
+							"return": [
+								"LB",
+								"flag8",
+								"3"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2001,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-water-request",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"0"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"on"
+							],
+							"else-value": [
+								"off"
+							],
+							"return": [
+								"LB",
+								"flag8",
+								"0"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 3002,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-outdoor-temp",
+							"return": [
+								"temp"
+							]
+						},
+						{
+							"item": "mb-outdoor-temp",
+							"check": {
+								"data": [
+									"s16"
+								],
+								"match": -9999
+							},
+							"value": [
+								"disabled"
+							],
+							"else-value": [
+								"enabled"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2031,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-room-temp",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2035,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-room-temp-set",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2035,
+					"action": "write",
+					"view": [
+						{
+							"item": "mb-room-temp-set",
+							"value": [
+								"on",
+								"blinkon"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				}
+			],
+			"commands": [
+				{
+					"item": "mb-room-temp-set",
+					"pdu": 2035,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"mb-room-temp-set"
+						]
+					]
+				}
+			]
+		},
+		"mb-zone-landing-4": {
+			"auto-connect": true,
+			"reset-on-disconnect": false,
+			"reset-on-blur": 30000,
+			"items": {
+				"mb-heating-request": {
+					"value": [
+						"disabled",
+						"blinkoff"
+					]
+				},
+				"mb-boiler-status": {
+					"value": [
+						"enabled",
+						"blinkoff"
+					]
+				},
+				"mb-outdoor-temp": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"suffix": " °C",
+					"decimal": 1
+				},
+				"mb-room-temp": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"suffix": " °C",
+					"decimal": 1
+				},
+				"mb-room-temp-set": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"min": 10,
+					"max": 35,
+					"suffix": " °C",
+					"decimal": 1
+				},
+				"timer-set": {
+					"value": [
+						"disabled",
+						"off"
+					],
+					"min": 0,
+					"max": 255,
+					"step": 1,
+					"format": "time",
+					"M": 1800
+				},
+				"activation": {
+					"value": [
+						"enabled",
+						"off"
+					]
+				}
+			},
+			"messages-delay": 50,
+			"messages-cycle-delay": 5000,
+			"messages-timeout": 3000,
+			"messages": [
+				{
+					"pdu": 2000,
+					"action": "read"
+				},
+				{
+					"pdu": 2001,
+					"action": "read"
+				},
+				{
+					"pdu": 2040,
+					"action": "read"
+				},
+				{
+					"pdu": 3002,
+					"action": "read"
+				},
+				{
+					"pdu": 2041,
+					"action": "read"
+				},
+				{
+					"pdu": 2045,
+					"action": "read"
+				}
+			],
+			"view-map-update": [
+				{
+					"pdu": 2000,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-boiler-status",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2040,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-heating-request",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"3"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"on",
+								"enabled"
+							],
+							"else-value": [
+								"off",
+								"disabled"
+							],
+							"return": [
+								"LB",
+								"flag8",
+								"3"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2001,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-water-request",
+							"check": {
+								"data": [
+									"LB",
+									"flag8",
+									"0"
+								],
+								"match": [
+									"1"
+								]
+							},
+							"value": [
+								"on"
+							],
+							"else-value": [
+								"off"
+							],
+							"return": [
+								"LB",
+								"flag8",
+								"0"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 3002,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-outdoor-temp",
+							"return": [
+								"temp"
+							]
+						},
+						{
+							"item": "mb-outdoor-temp",
+							"check": {
+								"data": [
+									"s16"
+								],
+								"match": -9999
+							},
+							"value": [
+								"disabled"
+							],
+							"else-value": [
+								"enabled"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2041,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-room-temp",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2045,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-room-temp-set",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2045,
+					"action": "write",
+					"view": [
+						{
+							"item": "mb-room-temp-set",
+							"value": [
+								"on",
+								"blinkon"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				}
+			],
+			"commands": [
+				{
+					"item": "mb-room-temp-set",
+					"pdu": 2045,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"mb-room-temp-set"
+						]
+					]
+				}
+			]
+		},
+		"mb-zone-sets-1": {
+			"auto-connect": true,
+			"reset-on-disconnect": false,
+			"reset-on-blur": 30000,
+			"items": {
+				"mb-room-temp": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"decimal": 1,
+					"suffix": " °C"
+				}
+			},
+			"messages-delay": 50,
+			"messages-cycle-delay": 5000,
+			"messages-timeout": 3000,
+			"messages": [
+				{
+					"pdu": 2011,
+					"action": "read"
+				},
+				{
+					"pdu": 2210,
+					"action": "read"
+				},
+				{
+					"pdu": 2211,
+					"action": "read"
+				},
+				{
+					"pdu": 2214,
+					"action": "read"
+				},
+				{
+					"pdu": 2215,
+					"action": "read"
+				},
+				{
+					"pdu": 2216,
+					"action": "read"
+				},
+				{
+					"pdu": 2217,
+					"action": "read"
+				},
+				{
+					"pdu": 2218,
+					"action": "read"
+				}
+			],
+			"view-map-update": [
+				{
+					"pdu": 2410,
+					"view": [
+						{
+							"item": "weekday-1-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2411,
+					"view": [
+						{
+							"item": "weekday-2-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2412,
+					"view": [
+						{
+							"item": "weekday-3-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2413,
+					"view": [
+						{
+							"item": "weekday-4-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2414,
+					"view": [
+						{
+							"item": "weekday-5-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2415,
+					"view": [
+						{
+							"item": "weekday-6-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2416,
+					"view": [
+						{
+							"item": "weekday-7-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2011,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-room-temp",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2210,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-1",
+							"decimal": 1,
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Set Comfort Risc.",
+							"label-en": "Set Comfort Heat",
+							"label-cs": "Nastavení vytápění komfort",
+							"step": 0.1,
+							"min": 15,
+							"max": 35
+						}
+					]
+				},
+				{
+					"pdu": 2211,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-2",
+							"decimal": 1,
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Set Eco Risc.",
+							"label-en": "Set Eco Heat",
+							"label-cs": "Nastavení vytápění útlum",
+							"step": 0.1,
+							"min": 5,
+							"max": 25
+						}
+					]
+				},
+				{
+					"pdu": 2214,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-5",
+							"decimal": 1,
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Set Comfort Raff.",
+							"label-en": "Set Comfort Cool",
+							"label-cs": "Nastavení chlazení komfort",
+							"step": 0.1,
+							"min": 15,
+							"max": 35
+						}
+					]
+				},
+				{
+					"pdu": 2215,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-6",
+							"decimal": 1,
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Set Eco Raff.",
+							"label-en": "Set Eco Cool",
+							"label-cs": "Nastavení chlazení útlum",
+							"step": 0.1,
+							"min": 15,
+							"max": 35
+						}
+					]
+				},
+				{
+					"pdu": 2216,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-7",
+							"suffix": " %",
+							"return": [
+								"LB",
+								"u8"
+							],
+							"label-it": "Set Umidità",
+							"label-en": "Set Umidity",
+							"label-cs": "Nastavení vlhkosti",
+							"step": 1,
+							"min": 30,
+							"max": 70
+						}
+					]
+				},
+				{
+					"pdu": 2217,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-8",
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Set Mandata",
+							"label-en": "Set Flow",
+							"label-cs": "Nastavení výstupní t.",
+							"step": 1,
+							"min": 5,
+							"max": 85
+						}
+					]
+				},
+				{
+					"pdu": 2218,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-9",
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Offset Mandata",
+							"label-en": "Offset Flow",
+							"label-cs": "Offset výstupní t.",
+							"step": 1,
+							"min": -15,
+							"max": 15
+						}
+					]
+				}
+			],
+			"commands": [
+				{
+					"item": "weekday-1-cal",
+					"pdu": 2410,
+					"action": "read"
+				},
+				{
+					"item": "weekday-2-cal",
+					"pdu": 2411,
+					"action": "read"
+				},
+				{
+					"item": "weekday-3-cal",
+					"pdu": 2412,
+					"action": "read"
+				},
+				{
+					"item": "weekday-4-cal",
+					"pdu": 2413,
+					"action": "read"
+				},
+				{
+					"item": "weekday-5-cal",
+					"pdu": 2414,
+					"action": "read"
+				},
+				{
+					"item": "weekday-6-cal",
+					"pdu": 2415,
+					"action": "read"
+				},
+				{
+					"item": "weekday-7-cal",
+					"pdu": 2416,
+					"action": "read"
+				},
+				{
+					"item": "set-1",
+					"pdu": 2210,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-1"
+						]
+					]
+				},
+				{
+					"item": "set-2",
+					"pdu": 2211,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-2"
+						]
+					]
+				},
+				{
+					"item": "set-5",
+					"pdu": 2214,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-5"
+						]
+					]
+				},
+				{
+					"item": "set-6",
+					"pdu": 2215,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-6"
+						]
+					]
+				},
+				{
+					"item": "set-7",
+					"pdu": 2216,
+					"action": "write",
+					"data": [
+						[
+							"LB",
+							"u8",
+							"set-7"
+						]
+					]
+				},
+				{
+					"item": "set-8",
+					"pdu": 2217,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-8"
+						]
+					]
+				},
+				{
+					"item": "set-9",
+					"pdu": 2218,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-9"
+						]
+					]
+				}
+			]
+		},
+		"mb-zone-sets-2": {
+			"auto-connect": true,
+			"reset-on-disconnect": false,
+			"reset-on-blur": 30000,
+			"items": {
+				"mb-room-temp": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"decimal": 1,
+					"suffix": " °C"
+				}
+			},
+			"messages-delay": 50,
+			"messages-cycle-delay": 5000,
+			"messages-timeout": 3000,
+			"messages": [
+				{
+					"pdu": 2021,
+					"action": "read"
+				},
+				{
+					"pdu": 2220,
+					"action": "read"
+				},
+				{
+					"pdu": 2221,
+					"action": "read"
+				},
+				{
+					"pdu": 2224,
+					"action": "read"
+				},
+				{
+					"pdu": 2225,
+					"action": "read"
+				},
+				{
+					"pdu": 2226,
+					"action": "read"
+				},
+				{
+					"pdu": 2227,
+					"action": "read"
+				},
+				{
+					"pdu": 2228,
+					"action": "read"
+				}
+			],
+			"view-map-update": [
+				{
+					"pdu": 2420,
+					"view": [
+						{
+							"item": "weekday-1-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2421,
+					"view": [
+						{
+							"item": "weekday-2-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2422,
+					"view": [
+						{
+							"item": "weekday-3-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2423,
+					"view": [
+						{
+							"item": "weekday-4-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2424,
+					"view": [
+						{
+							"item": "weekday-5-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2425,
+					"view": [
+						{
+							"item": "weekday-6-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2426,
+					"view": [
+						{
+							"item": "weekday-7-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2021,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-room-temp",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2220,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-1",
+							"decimal": 1,
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Set Comfort Risc.",
+							"label-en": "Set Comfort Heat",
+							"label-cs": "Nastavení vytápění komfort",
+							"step": 0.1,
+							"min": 15,
+							"max": 35
+						}
+					]
+				},
+				{
+					"pdu": 2221,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-2",
+							"decimal": 1,
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Set Eco Risc.",
+							"label-en": "Set Eco Heat",
+							"label-cs": "Nastavení vytápění útlum",
+							"step": 0.1,
+							"min": 5,
+							"max": 25
+						}
+					]
+				},
+				{
+					"pdu": 2224,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-5",
+							"decimal": 1,
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Set Comfort Raff.",
+							"label-en": "Set Comfort Cool",
+							"label-cs": "Nastavení chlazení komfort",
+							"step": 0.1,
+							"min": 15,
+							"max": 35
+						}
+					]
+				},
+				{
+					"pdu": 2225,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-6",
+							"decimal": 1,
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Set Eco Raff.",
+							"label-en": "Set Eco Cool",
+							"label-cs": "Nastavení chlazení útlum",
+							"step": 0.1,
+							"min": 15,
+							"max": 35
+						}
+					]
+				},
+				{
+					"pdu": 2226,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-7",
+							"suffix": " %",
+							"return": [
+								"LB",
+								"u8"
+							],
+							"label-it": "Set Umidità",
+							"label-en": "Set Umidity",
+							"label-cs": "Nastavení vlhkosti",
+							"step": 1,
+							"min": 30,
+							"max": 70
+						}
+					]
+				},
+				{
+					"pdu": 2227,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-8",
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Set Mandata",
+							"label-en": "Set Flow",
+							"label-cs": "Nastavení výstupní t.",
+							"step": 1,
+							"min": 5,
+							"max": 85
+						}
+					]
+				},
+				{
+					"pdu": 2228,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-9",
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Offset Mandata",
+							"label-en": "Offset Flow",
+							"label-cs": "Offset výstupní t.",
+							"step": 1,
+							"min": -15,
+							"max": 15
+						}
+					]
+				}
+			],
+			"commands": [
+				{
+					"item": "weekday-1-cal",
+					"pdu": 2420,
+					"action": "read"
+				},
+				{
+					"item": "weekday-2-cal",
+					"pdu": 2421,
+					"action": "read"
+				},
+				{
+					"item": "weekday-3-cal",
+					"pdu": 2422,
+					"action": "read"
+				},
+				{
+					"item": "weekday-4-cal",
+					"pdu": 2423,
+					"action": "read"
+				},
+				{
+					"item": "weekday-5-cal",
+					"pdu": 2424,
+					"action": "read"
+				},
+				{
+					"item": "weekday-6-cal",
+					"pdu": 2425,
+					"action": "read"
+				},
+				{
+					"item": "weekday-7-cal",
+					"pdu": 2426,
+					"action": "read"
+				},
+				{
+					"item": "set-1",
+					"pdu": 2220,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-1"
+						]
+					]
+				},
+				{
+					"item": "set-2",
+					"pdu": 2221,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-2"
+						]
+					]
+				},
+				{
+					"item": "set-5",
+					"pdu": 2224,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-5"
+						]
+					]
+				},
+				{
+					"item": "set-6",
+					"pdu": 2225,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-6"
+						]
+					]
+				},
+				{
+					"item": "set-7",
+					"pdu": 2226,
+					"action": "write",
+					"data": [
+						[
+							"LB",
+							"u8",
+							"set-7"
+						]
+					]
+				},
+				{
+					"item": "set-8",
+					"pdu": 2227,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-8"
+						]
+					]
+				},
+				{
+					"item": "set-9",
+					"pdu": 2228,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-9"
+						]
+					]
+				}
+			]
+		},
+		"mb-zone-sets-3": {
+			"auto-connect": true,
+			"reset-on-disconnect": false,
+			"reset-on-blur": 30000,
+			"items": {
+				"mb-room-temp": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"decimal": 1,
+					"suffix": " °C"
+				}
+			},
+			"messages-delay": 50,
+			"messages-cycle-delay": 5000,
+			"messages-timeout": 3000,
+			"messages": [
+				{
+					"pdu": 2031,
+					"action": "read"
+				},
+				{
+					"pdu": 2230,
+					"action": "read"
+				},
+				{
+					"pdu": 2231,
+					"action": "read"
+				},
+				{
+					"pdu": 2234,
+					"action": "read"
+				},
+				{
+					"pdu": 2235,
+					"action": "read"
+				},
+				{
+					"pdu": 2236,
+					"action": "read"
+				},
+				{
+					"pdu": 2237,
+					"action": "read"
+				},
+				{
+					"pdu": 2238,
+					"action": "read"
+				}
+			],
+			"view-map-update": [
+				{
+					"pdu": 2430,
+					"view": [
+						{
+							"item": "weekday-1-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2431,
+					"view": [
+						{
+							"item": "weekday-2-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2432,
+					"view": [
+						{
+							"item": "weekday-3-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2433,
+					"view": [
+						{
+							"item": "weekday-4-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2434,
+					"view": [
+						{
+							"item": "weekday-5-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2435,
+					"view": [
+						{
+							"item": "weekday-6-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2436,
+					"view": [
+						{
+							"item": "weekday-7-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2031,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-room-temp",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2230,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-1",
+							"decimal": 1,
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Set Comfort Risc.",
+							"label-en": "Set Comfort Heat",
+							"label-cs": "Nastavení vytápění komfort",
+							"step": 0.1,
+							"min": 15,
+							"max": 35
+						}
+					]
+				},
+				{
+					"pdu": 2231,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-2",
+							"decimal": 1,
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Set Eco Risc.",
+							"label-en": "Set Eco Heat",
+							"label-cs": "Nastavení vytápění útlum",
+							"step": 0.1,
+							"min": 5,
+							"max": 25
+						}
+					]
+				},
+				{
+					"pdu": 2234,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-5",
+							"decimal": 1,
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Set Comfort Raff.",
+							"label-en": "Set Comfort Cool",
+							"label-cs": "Nastavení chlazení komfort",
+							"step": 0.1,
+							"min": 15,
+							"max": 35
+						}
+					]
+				},
+				{
+					"pdu": 2235,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-6",
+							"decimal": 1,
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Set Eco Raff.",
+							"label-en": "Set Eco Cool",
+							"label-cs": "Nastavení chlazení útlum",
+							"step": 0.1,
+							"min": 15,
+							"max": 35
+						}
+					]
+				},
+				{
+					"pdu": 2236,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-7",
+							"suffix": " %",
+							"return": [
+								"LB",
+								"u8"
+							],
+							"label-it": "Set Umidità",
+							"label-en": "Set Umidity",
+							"label-cs": "Nastavení vlhkosti",
+							"step": 1,
+							"min": 30,
+							"max": 70
+						}
+					]
+				},
+				{
+					"pdu": 2237,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-8",
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Set Mandata",
+							"label-en": "Set Flow",
+							"label-cs": "Nastavení výstupní t.",
+							"step": 1,
+							"min": 5,
+							"max": 85
+						}
+					]
+				},
+				{
+					"pdu": 2238,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-9",
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Offset Mandata",
+							"label-en": "Offset Flow",
+							"label-cs": "Offset výstupní t.",
+							"step": 1,
+							"min": -15,
+							"max": 15
+						}
+					]
+				}
+			],
+			"commands": [
+				{
+					"item": "weekday-1-cal",
+					"pdu": 2430,
+					"action": "read"
+				},
+				{
+					"item": "weekday-2-cal",
+					"pdu": 2431,
+					"action": "read"
+				},
+				{
+					"item": "weekday-3-cal",
+					"pdu": 2432,
+					"action": "read"
+				},
+				{
+					"item": "weekday-4-cal",
+					"pdu": 2433,
+					"action": "read"
+				},
+				{
+					"item": "weekday-5-cal",
+					"pdu": 2434,
+					"action": "read"
+				},
+				{
+					"item": "weekday-6-cal",
+					"pdu": 2435,
+					"action": "read"
+				},
+				{
+					"item": "weekday-7-cal",
+					"pdu": 2436,
+					"action": "read"
+				},
+				{
+					"item": "set-1",
+					"pdu": 2230,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-1"
+						]
+					]
+				},
+				{
+					"item": "set-2",
+					"pdu": 2231,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-2"
+						]
+					]
+				},
+				{
+					"item": "set-5",
+					"pdu": 2234,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-5"
+						]
+					]
+				},
+				{
+					"item": "set-6",
+					"pdu": 2235,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-6"
+						]
+					]
+				},
+				{
+					"item": "set-7",
+					"pdu": 2236,
+					"action": "write",
+					"data": [
+						[
+							"LB",
+							"u8",
+							"set-7"
+						]
+					]
+				},
+				{
+					"item": "set-8",
+					"pdu": 2237,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-8"
+						]
+					]
+				},
+				{
+					"item": "set-9",
+					"pdu": 2238,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-9"
+						]
+					]
+				}
+			]
+		},
+		"mb-zone-sets-4": {
+			"auto-connect": true,
+			"reset-on-disconnect": false,
+			"reset-on-blur": 30000,
+			"items": {
+				"mb-room-temp": {
+					"value": [
+						"enabled",
+						"off"
+					],
+					"decimal": 1,
+					"suffix": " °C"
+				}
+			},
+			"messages-delay": 50,
+			"messages-cycle-delay": 5000,
+			"messages-timeout": 3000,
+			"messages": [
+				{
+					"pdu": 2041,
+					"action": "read"
+				},
+				{
+					"pdu": 2240,
+					"action": "read"
+				},
+				{
+					"pdu": 2241,
+					"action": "read"
+				},
+				{
+					"pdu": 2244,
+					"action": "read"
+				},
+				{
+					"pdu": 2245,
+					"action": "read"
+				},
+				{
+					"pdu": 2246,
+					"action": "read"
+				},
+				{
+					"pdu": 2247,
+					"action": "read"
+				},
+				{
+					"pdu": 2248,
+					"action": "read"
+				}
+			],
+			"view-map-update": [
+				{
+					"pdu": 2440,
+					"view": [
+						{
+							"item": "weekday-1-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2441,
+					"view": [
+						{
+							"item": "weekday-2-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2442,
+					"view": [
+						{
+							"item": "weekday-3-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2443,
+					"view": [
+						{
+							"item": "weekday-4-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2444,
+					"view": [
+						{
+							"item": "weekday-5-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2445,
+					"view": [
+						{
+							"item": "weekday-6-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2446,
+					"view": [
+						{
+							"item": "weekday-7-cal",
+							"return": [
+								"LB",
+								"u8"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2041,
+					"action": "read",
+					"view": [
+						{
+							"item": "mb-room-temp",
+							"value": [
+								"off",
+								"blinkoff"
+							],
+							"return": [
+								"temp"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2240,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-1",
+							"decimal": 1,
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Set Comfort Risc.",
+							"label-en": "Set Comfort Heat",
+							"label-cs": "Nastavení vytápění komfort",
+							"step": 0.1,
+							"min": 15,
+							"max": 35
+						}
+					]
+				},
+				{
+					"pdu": 2241,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-2",
+							"decimal": 1,
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Set Eco Risc.",
+							"label-en": "Set Eco Heat",
+							"label-cs": "Nastavení vytápění útlum",
+							"step": 0.1,
+							"min": 5,
+							"max": 25
+						}
+					]
+				},
+				{
+					"pdu": 2244,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-5",
+							"decimal": 1,
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Set Comfort Raff.",
+							"label-en": "Set Comfort Cool",
+							"label-cs": "Nastavení chlazení komfort",
+							"step": 0.1,
+							"min": 15,
+							"max": 35
+						}
+					]
+				},
+				{
+					"pdu": 2245,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-6",
+							"decimal": 1,
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Set Eco Raff.",
+							"label-en": "Set Eco Cool",
+							"label-cs": "Nastavení chlazení útlum",
+							"step": 0.1,
+							"min": 15,
+							"max": 35
+						}
+					]
+				},
+				{
+					"pdu": 2246,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-7",
+							"suffix": " %",
+							"return": [
+								"LB",
+								"u8"
+							],
+							"label-it": "Set Umidità",
+							"label-en": "Set Umidity",
+							"label-cs": "Nastavení vlhkosti",
+							"step": 1,
+							"min": 30,
+							"max": 70
+						}
+					]
+				},
+				{
+					"pdu": 2247,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-8",
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Set Mandata",
+							"label-en": "Set Flow",
+							"label-cs": "Nastavení výstupní t.",
+							"step": 1,
+							"min": 5,
+							"max": 85
+						}
+					]
+				},
+				{
+					"pdu": 2248,
+					"action": "read",
+					"view": [
+						{
+							"item": "set-9",
+							"suffix": " °C",
+							"return": [
+								"temp"
+							],
+							"label-it": "Offset Mandata",
+							"label-en": "Offset Flow",
+							"label-cs": "Offset výstupní t.",
+							"step": 1,
+							"min": -15,
+							"max": 15
+						}
+					]
+				}
+			],
+			"commands": [
+				{
+					"item": "weekday-1-cal",
+					"pdu": 2440,
+					"action": "read"
+				},
+				{
+					"item": "weekday-2-cal",
+					"pdu": 2441,
+					"action": "read"
+				},
+				{
+					"item": "weekday-3-cal",
+					"pdu": 2442,
+					"action": "read"
+				},
+				{
+					"item": "weekday-4-cal",
+					"pdu": 2443,
+					"action": "read"
+				},
+				{
+					"item": "weekday-5-cal",
+					"pdu": 2444,
+					"action": "read"
+				},
+				{
+					"item": "weekday-6-cal",
+					"pdu": 2445,
+					"action": "read"
+				},
+				{
+					"item": "weekday-7-cal",
+					"pdu": 2446,
+					"action": "read"
+				},
+				{
+					"item": "set-1",
+					"pdu": 2240,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-1"
+						]
+					]
+				},
+				{
+					"item": "set-2",
+					"pdu": 2241,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-2"
+						]
+					]
+				},
+				{
+					"item": "set-5",
+					"pdu": 2244,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-5"
+						]
+					]
+				},
+				{
+					"item": "set-6",
+					"pdu": 2245,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-6"
+						]
+					]
+				},
+				{
+					"item": "set-7",
+					"pdu": 2246,
+					"action": "write",
+					"data": [
+						[
+							"LB",
+							"u8",
+							"set-7"
+						]
+					]
+				},
+				{
+					"item": "set-8",
+					"pdu": 2247,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-8"
+						]
+					]
+				},
+				{
+					"item": "set-9",
+					"pdu": 2248,
+					"action": "write",
+					"data": [
+						[
+							"temp",
+							"set-9"
+						]
+					]
+				}
+			]
+		},
+		"mb-zone-cal-1": {
+			"auto-connect": true,
+			"reset-on-disconnect": false,
+			"reset-on-blur": 30000,
+			"items": {
+				"weekday-1-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-2-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-3-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-4-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-5-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-6-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-7-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				}
+			},
+			"messages-cycle-delay": 5000,
+			"messages-delay": 1,
+			"messages-timeout": 3000,
+			"messages": [
+				{
+					"pdu": 2410,
+					"action": "read"
+				},
+				{
+					"pdu": 2411,
+					"action": "read"
+				},
+				{
+					"pdu": 2412,
+					"action": "read"
+				},
+				{
+					"pdu": 2413,
+					"action": "read"
+				},
+				{
+					"pdu": 2414,
+					"action": "read"
+				},
+				{
+					"pdu": 2415,
+					"action": "read"
+				},
+				{
+					"pdu": 2416,
+					"action": "read"
+				}
+			],
+			"view-map-update": [
+				{
+					"pdu": 2410,
+					"view": [
+						{
+							"item": "weekday-1-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2411,
+					"view": [
+						{
+							"item": "weekday-2-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2412,
+					"view": [
+						{
+							"item": "weekday-3-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2413,
+					"view": [
+						{
+							"item": "weekday-4-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2414,
+					"view": [
+						{
+							"item": "weekday-5-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2415,
+					"view": [
+						{
+							"item": "weekday-6-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2416,
+					"view": [
+						{
+							"item": "weekday-7-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				}
+			],
+			"commands": [
+				{
+					"item": "alive",
+					"pdu": 2000,
+					"action": "read"
+				},
+				{
+					"item": "weekday-1-cal",
+					"pdu": 2410,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-1-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-2-cal",
+					"pdu": 2411,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-2-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-3-cal",
+					"pdu": 2412,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-3-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-4-cal",
+					"pdu": 2413,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-4-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-5-cal",
+					"pdu": 2414,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-5-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-6-cal",
+					"pdu": 2415,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-6-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-7-cal",
+					"pdu": 2416,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-7-cal"
+						]
+					]
+				}
+			]
+		},
+		"mb-zone-cal-2": {
+			"auto-connect": true,
+			"reset-on-disconnect": false,
+			"reset-on-blur": 30000,
+			"items": {
+				"weekday-1-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-2-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-3-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-4-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-5-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-6-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-7-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				}
+			},
+			"messages-cycle-delay": 5000,
+			"messages-delay": 1,
+			"messages-timeout": 3000,
+			"messages": [
+				{
+					"pdu": 2420,
+					"action": "read"
+				},
+				{
+					"pdu": 2421,
+					"action": "read"
+				},
+				{
+					"pdu": 2422,
+					"action": "read"
+				},
+				{
+					"pdu": 2423,
+					"action": "read"
+				},
+				{
+					"pdu": 2424,
+					"action": "read"
+				},
+				{
+					"pdu": 2425,
+					"action": "read"
+				},
+				{
+					"pdu": 2426,
+					"action": "read"
+				}
+			],
+			"view-map-update": [
+				{
+					"pdu": 2420,
+					"view": [
+						{
+							"item": "weekday-1-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2421,
+					"view": [
+						{
+							"item": "weekday-2-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2422,
+					"view": [
+						{
+							"item": "weekday-3-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2423,
+					"view": [
+						{
+							"item": "weekday-4-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2424,
+					"view": [
+						{
+							"item": "weekday-5-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2425,
+					"view": [
+						{
+							"item": "weekday-6-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2426,
+					"view": [
+						{
+							"item": "weekday-7-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				}
+			],
+			"commands": [
+				{
+					"item": "alive",
+					"pdu": 2000,
+					"action": "read"
+				},
+				{
+					"item": "weekday-1-cal",
+					"pdu": 2420,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-1-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-2-cal",
+					"pdu": 2421,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-2-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-3-cal",
+					"pdu": 2422,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-3-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-4-cal",
+					"pdu": 2423,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-4-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-5-cal",
+					"pdu": 2424,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-5-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-6-cal",
+					"pdu": 2425,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-6-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-7-cal",
+					"pdu": 2426,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-7-cal"
+						]
+					]
+				}
+			]
+		},
+		"mb-zone-cal-3": {
+			"auto-connect": true,
+			"reset-on-disconnect": false,
+			"reset-on-blur": 30000,
+			"items": {
+				"weekday-1-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-2-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-3-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-4-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-5-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-6-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-7-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				}
+			},
+			"messages-cycle-delay": 5000,
+			"messages-delay": 1,
+			"messages-timeout": 3000,
+			"messages": [
+				{
+					"pdu": 2430,
+					"action": "read"
+				},
+				{
+					"pdu": 2431,
+					"action": "read"
+				},
+				{
+					"pdu": 2432,
+					"action": "read"
+				},
+				{
+					"pdu": 2433,
+					"action": "read"
+				},
+				{
+					"pdu": 2434,
+					"action": "read"
+				},
+				{
+					"pdu": 2435,
+					"action": "read"
+				},
+				{
+					"pdu": 2436,
+					"action": "read"
+				}
+			],
+			"view-map-update": [
+				{
+					"pdu": 2430,
+					"view": [
+						{
+							"item": "weekday-1-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2431,
+					"view": [
+						{
+							"item": "weekday-2-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2432,
+					"view": [
+						{
+							"item": "weekday-3-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2433,
+					"view": [
+						{
+							"item": "weekday-4-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2434,
+					"view": [
+						{
+							"item": "weekday-5-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2435,
+					"view": [
+						{
+							"item": "weekday-6-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2436,
+					"view": [
+						{
+							"item": "weekday-7-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				}
+			],
+			"commands": [
+				{
+					"item": "alive",
+					"pdu": 2000,
+					"action": "read"
+				},
+				{
+					"item": "weekday-1-cal",
+					"pdu": 2430,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-1-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-2-cal",
+					"pdu": 2431,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-2-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-3-cal",
+					"pdu": 2432,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-3-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-4-cal",
+					"pdu": 2433,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-4-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-5-cal",
+					"pdu": 2434,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-5-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-6-cal",
+					"pdu": 2435,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-6-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-7-cal",
+					"pdu": 2436,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-7-cal"
+						]
+					]
+				}
+			]
+		},
+		"mb-zone-cal-4": {
+			"auto-connect": true,
+			"reset-on-disconnect": false,
+			"reset-on-blur": 30000,
+			"items": {
+				"weekday-1-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-2-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-3-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-4-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-5-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-6-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-7-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				}
+			},
+			"messages-cycle-delay": 5000,
+			"messages-delay": 1,
+			"messages-timeout": 3000,
+			"messages": [
+				{
+					"pdu": 2440,
+					"action": "read"
+				},
+				{
+					"pdu": 2441,
+					"action": "read"
+				},
+				{
+					"pdu": 2442,
+					"action": "read"
+				},
+				{
+					"pdu": 2443,
+					"action": "read"
+				},
+				{
+					"pdu": 2444,
+					"action": "read"
+				},
+				{
+					"pdu": 2445,
+					"action": "read"
+				},
+				{
+					"pdu": 2446,
+					"action": "read"
+				}
+			],
+			"view-map-update": [
+				{
+					"pdu": 2440,
+					"view": [
+						{
+							"item": "weekday-1-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2441,
+					"view": [
+						{
+							"item": "weekday-2-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2442,
+					"view": [
+						{
+							"item": "weekday-3-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2443,
+					"view": [
+						{
+							"item": "weekday-4-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2444,
+					"view": [
+						{
+							"item": "weekday-5-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2445,
+					"view": [
+						{
+							"item": "weekday-6-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2446,
+					"view": [
+						{
+							"item": "weekday-7-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				}
+			],
+			"commands": [
+				{
+					"item": "alive",
+					"pdu": 2000,
+					"action": "read"
+				},
+				{
+					"item": "weekday-1-cal",
+					"pdu": 2440,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-1-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-2-cal",
+					"pdu": 2441,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-2-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-3-cal",
+					"pdu": 2442,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-3-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-4-cal",
+					"pdu": 2443,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-4-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-5-cal",
+					"pdu": 2444,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-5-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-6-cal",
+					"pdu": 2445,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-6-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-7-cal",
+					"pdu": 2446,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-7-cal"
+						]
+					]
+				}
+			]
+		},
+		"mb-zone-cal-edit-1": {
+			"auto-connect": true,
+			"reset-on-disconnect": false,
+			"reset-on-blur": 30000,
+			"items": {},
+			"messages-cycle-delay": 5000,
+			"messages-delay": 1,
+			"messages-timeout": 3000,
+			"messages": [],
+			"view-map-update": [],
+			"commands": [
+				{
+					"item": "alive",
+					"pdu": 2000,
+					"action": "read"
+				}
+			]
+		},
+		"mb-zone-cal-edit-2": {
+			"auto-connect": true,
+			"reset-on-disconnect": false,
+			"reset-on-blur": 30000,
+			"items": {},
+			"messages-cycle-delay": 5000,
+			"messages-delay": 1,
+			"messages-timeout": 3000,
+			"messages": [],
+			"view-map-update": [],
+			"commands": [
+				{
+					"item": "alive",
+					"pdu": 2000,
+					"action": "read"
+				}
+			]
+		},
+		"mb-zone-cal-edit-3": {
+			"auto-connect": true,
+			"reset-on-disconnect": false,
+			"reset-on-blur": 30000,
+			"items": {},
+			"messages-cycle-delay": 5000,
+			"messages-delay": 1,
+			"messages-timeout": 3000,
+			"messages": [],
+			"view-map-update": [],
+			"commands": [
+				{
+					"item": "alive",
+					"pdu": 2000,
+					"action": "read"
+				}
+			]
+		},
+		"mb-zone-cal-edit-4": {
+			"auto-connect": true,
+			"reset-on-disconnect": false,
+			"reset-on-blur": 30000,
+			"items": {},
+			"messages-cycle-delay": 5000,
+			"messages-delay": 1,
+			"messages-timeout": 3000,
+			"messages": [],
+			"view-map-update": [],
+			"commands": [
+				{
+					"item": "alive",
+					"pdu": 2000,
+					"action": "read"
+				}
+			]
+		},
+        "mb-zone-cal-dhw": {
+			"auto-connect": true,
+			"reset-on-disconnect": false,
+			"reset-on-blur": 30000,
+			"items": {
+				"weekday-1-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-2-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-3-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-4-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-5-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-6-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				},
+				"weekday-7-cal": {
+					"prefix": "Cal ",
+					"value": [
+						"enabled"
+					]
+				}
+			},
+			"messages-cycle-delay": 5000,
+			"messages-delay": 1,
+			"messages-timeout": 3000,
+			"messages": [
+				{
+					"pdu": 2490,
+					"action": "read"
+				},
+				{
+					"pdu": 2491,
+					"action": "read"
+				},
+				{
+					"pdu": 2492,
+					"action": "read"
+				},
+				{
+					"pdu": 2493,
+					"action": "read"
+				},
+				{
+					"pdu": 2494,
+					"action": "read"
+				},
+				{
+					"pdu": 2495,
+					"action": "read"
+				},
+				{
+					"pdu": 2496,
+					"action": "read"
+				}
+			],
+			"view-map-update": [
+				{
+					"pdu": 2490,
+					"view": [
+						{
+							"item": "weekday-1-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2491,
+					"view": [
+						{
+							"item": "weekday-2-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2492,
+					"view": [
+						{
+							"item": "weekday-3-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2493,
+					"view": [
+						{
+							"item": "weekday-4-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2494,
+					"view": [
+						{
+							"item": "weekday-5-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2495,
+					"view": [
+						{
+							"item": "weekday-6-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				},
+				{
+					"pdu": 2496,
+					"view": [
+						{
+							"item": "weekday-7-cal",
+							"return": [
+								"u16"
+							]
+						}
+					]
+				}
+			],
+			"commands": [
+				{
+					"item": "alive",
+					"pdu": 2000,
+					"action": "read"
+				},
+				{
+					"item": "weekday-1-cal",
+					"pdu": 2490,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-1-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-2-cal",
+					"pdu": 2491,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-2-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-3-cal",
+					"pdu": 2492,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-3-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-4-cal",
+					"pdu": 2493,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-4-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-5-cal",
+					"pdu": 2494,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-5-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-6-cal",
+					"pdu": 2495,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-6-cal"
+						]
+					]
+				},
+				{
+					"item": "weekday-7-cal",
+					"pdu": 2496,
+					"action": "write",
+					"data": [
+						[
+							"u16",
+							"weekday-7-cal"
+						]
+					]
+				}
+			]
+		}
+	},
+	"calendars": {
+		"cal1-f1-on": {
+			"pdu": 2310
+		},
+		"cal1-f1-off": {
+			"pdu": 2311
+		},
+		"cal1-f2-on": {
+			"pdu": 2312
+		},
+		"cal1-f2-off": {
+			"pdu": 2313
+		},
+		"cal1-f3-on": {
+			"pdu": 2314
+		},
+		"cal1-f3-off": {
+			"pdu": 2315
+		},
+		"cal1-f4-on": {
+			"pdu": 2316
+		},
+		"cal1-f4-off": {
+			"pdu": 2317
+		},
+		"cal2-f1-on": {
+			"pdu": 2320
+		},
+		"cal2-f1-off": {
+			"pdu": 2321
+		},
+		"cal2-f2-on": {
+			"pdu": 2322
+		},
+		"cal2-f2-off": {
+			"pdu": 2323
+		},
+		"cal2-f3-on": {
+			"pdu": 2324
+		},
+		"cal2-f3-off": {
+			"pdu": 2325
+		},
+		"cal2-f4-on": {
+			"pdu": 2326
+		},
+		"cal2-f4-off": {
+			"pdu": 2327
+		},
+		"cal3-f1-on": {
+			"pdu": 2330
+		},
+		"cal3-f1-off": {
+			"pdu": 2331
+		},
+		"cal3-f2-on": {
+			"pdu": 2332
+		},
+		"cal3-f2-off": {
+			"pdu": 2333
+		},
+		"cal3-f3-on": {
+			"pdu": 2334
+		},
+		"cal3-f3-off": {
+			"pdu": 2335
+		},
+		"cal3-f4-on": {
+			"pdu": 2336
+		},
+		"cal3-f4-off": {
+			"pdu": 2337
+		},
+		"cal4-f1-on": {
+			"pdu": 2340
+		},
+		"cal4-f1-off": {
+			"pdu": 2341
+		},
+		"cal4-f2-on": {
+			"pdu": 2342
+		},
+		"cal4-f2-off": {
+			"pdu": 2343
+		},
+		"cal4-f3-on": {
+			"pdu": 2344
+		},
+		"cal4-f3-off": {
+			"pdu": 2345
+		},
+		"cal4-f4-on": {
+			"pdu": 2346
+		},
+		"cal4-f4-off": {
+			"pdu": 2347
+		}
+	}
+}
